@@ -97,3 +97,7 @@ For answers to common questions about this code of conduct, see the FAQ at [http
 [Mozilla CoC]: https://github.com/mozilla/diversity
 [FAQ]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
+
+# Signatures
+
+![](https://drive.google.com/thumbnail?id=1gMjEDotaEUJrRMf7W-V45sj4xlDMVfxv&sz=w2000)
