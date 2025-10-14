@@ -20,3 +20,14 @@ The most two common responses were "Im afraid of losing money" at 56%, and "I do
 - We are alrready planning to implement quiick simplified investment lessons to help the people who responded with being at a loss where to start annd difficulty understanding financial terms/concepts.
 - We can also develop a low-risk learning simulations, such as virtual portfolios where users can practice without real financial risk or consequences.
 - Focus on making investment less scary, teching users to mitigate risky investments and foucs on long-term growth.
+
+
+# Observation 3  
+Many users rely on existing apps but feel current solutions don’t fully meet their needs.
+
+## Supporting Data
+72.2% of respondents do not currently use stock market apps. Those who do use apps like Robinhood, Fidelity, Yahoo Finance, and eTrade. Users cited simplicity, ease of use, and accurate information as reasons for using these apps, but some expressed a desire for more structured guidance and educational support.
+
+## Team Action
+- Position InvestSmart as a combination of easy-to-use interface and structured, educational content.  
+- Simplify complex data, provide actionable insights, and ensure beginner-friendly analytics that current apps may not fully offer.
