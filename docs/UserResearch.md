@@ -8,3 +8,15 @@ Most users surveyed had low familiarity with investing. On a scale from 1-5, 33.
 ## Team Action
 - We know that most users desire ~10-minute lessons.
 - We know that community discussion will be a popular feature and strongly consider adding it to our app in some form.
+
+
+# Observation 2
+Poeple who were asked what about investing feels difficult or intimidating had 3 or 4 common reasons.
+
+## Supporting Data
+The most two common responses were "Im afraid of losing money" at 56%, and "I dont know where two start" getting 44% of the responses. Other reasons given were "It takes too much time" (28%), "Confusing terms and concepts" (39%). 
+
+## Team Action
+- We are alrready planning to implement quiick simplified investment lessons to help the people who responded with being at a loss where to start annd difficulty understanding financial terms/concepts.
+- We can also develop a low-risk learning simulations, such as virtual portfolios where users can practice without real financial risk or consequences.
+- Focus on making investment less scary, teching users to mitigate risky investments and foucs on long-term growth.
