@@ -101,4 +101,4 @@ For answers to common questions about this code of conduct, see the FAQ at [http
 # Signatures
 
 ![](https://drive.google.com/thumbnail?id=1gMjEDotaEUJrRMf7W-V45sj4xlDMVfxv&sz=w2000)
-![](https://drive.google.com/file/d/17vh5eaXYO_zGlcCObvNsUUeT0mJvoSI0/view?usp=sharing).
+![](https://drive.google.com/file/d/17vh5eaXYO_zGlcCObvNsUUeT0mJvoSI0/view?usp=sharing)
