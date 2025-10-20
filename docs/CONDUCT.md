@@ -103,3 +103,5 @@ For answers to common questions about this code of conduct, see the FAQ at [http
 ![](https://drive.google.com/thumbnail?id=1gMjEDotaEUJrRMf7W-V45sj4xlDMVfxv&sz=w2000)
 
 ![](https://drive.google.com/thumbnail?id=17vh5eaXYO_zGlcCObvNsUUeT0mJvoSI0&sz=w2000)
+
+![](https://drive.google.com/thumbnail?id=1wWGvN2RP6O-1BYm7RrUMHIm_Ips6igl7)
