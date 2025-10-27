@@ -6,7 +6,7 @@
 **Variations**: Change the button located at the bottom of the screen to a pop up that appears after a user completes a lesson to ensure the user sees the quiz.  
 
 **Investments or Lessons**
-**User Story 5 / User Story 4**
+**User Story 2 (User Log In)**
 **Metric**: NPS / Lessons completion rate
 **Problems**: Should we send users to the lesson page when they first sign in, or directly to the "trading" screen
 **Experiments**: Create 2 groups, have 1 go directly to the "trading" screen and the other go to the lessons screen
