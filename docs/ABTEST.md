@@ -13,6 +13,7 @@
 **Variations**: Either take the user to the lessons tab after login or the trading tab after sign in. IE, should the user be assumed to know how to trade, or should we have to teach them the basics first.  
 
 **Profile vs Lessons**
+
 **User Story 10: Metrics Collection for Average Session Frequency**
 **Metric**: Average sessions per user (7-day window)
 **Problem**: The app currently opens to the Profile screen after log in. While users can navigate to other tabs using the navigation bar, starting on the Profile screen may not immediately engage them. We want to test if landing directly on the Lessons tab encourages users to return more frequently.
