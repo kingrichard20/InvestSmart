@@ -70,34 +70,128 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
+GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
+    GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? Screen2Widget() : HomePageWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? entryPage ?? LessonsWidget()
+          : AuthMethodsWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? Screen2Widget() : HomePageWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? entryPage ?? LessonsWidget()
+              : AuthMethodsWidget(),
         ),
         FFRoute(
-          name: HomePageWidget.routeName,
-          path: HomePageWidget.routePath,
-          builder: (context, params) => HomePageWidget(),
+          name: Chapter1Widget.routeName,
+          path: Chapter1Widget.routePath,
+          builder: (context, params) => Chapter1Widget(),
         ),
         FFRoute(
-          name: Screen2Widget.routeName,
-          path: Screen2Widget.routePath,
-          builder: (context, params) => Screen2Widget(),
+          name: ProfileWidget.routeName,
+          path: ProfileWidget.routePath,
+          builder: (context, params) => ProfileWidget(),
+        ),
+        FFRoute(
+          name: Chapter4Widget.routeName,
+          path: Chapter4Widget.routePath,
+          builder: (context, params) => Chapter4Widget(),
+        ),
+        FFRoute(
+          name: Quiz1Widget.routeName,
+          path: Quiz1Widget.routePath,
+          builder: (context, params) => Quiz1Widget(),
         ),
         FFRoute(
           name: AuthMethodsWidget.routeName,
           path: AuthMethodsWidget.routePath,
           builder: (context, params) => AuthMethodsWidget(),
+        ),
+        FFRoute(
+          name: LessonsWidget.routeName,
+          path: LessonsWidget.routePath,
+          builder: (context, params) => LessonsWidget(),
+        ),
+        FFRoute(
+          name: PortfolioWidget.routeName,
+          path: PortfolioWidget.routePath,
+          builder: (context, params) => PortfolioWidget(),
+        ),
+        FFRoute(
+          name: Quiz4Widget.routeName,
+          path: Quiz4Widget.routePath,
+          builder: (context, params) => Quiz4Widget(),
+        ),
+        FFRoute(
+          name: BuyWidget.routeName,
+          path: BuyWidget.routePath,
+          builder: (context, params) => BuyWidget(
+            ticker: params.getParam(
+              'ticker',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: SearchWidget.routeName,
+          path: SearchWidget.routePath,
+          builder: (context, params) => SearchWidget(),
+        ),
+        FFRoute(
+          name: SellWidget.routeName,
+          path: SellWidget.routePath,
+          builder: (context, params) => SellWidget(),
+        ),
+        FFRoute(
+          name: Chapter2Widget.routeName,
+          path: Chapter2Widget.routePath,
+          builder: (context, params) => Chapter2Widget(),
+        ),
+        FFRoute(
+          name: Chapter3Widget.routeName,
+          path: Chapter3Widget.routePath,
+          builder: (context, params) => Chapter3Widget(),
+        ),
+        FFRoute(
+          name: Chapter5Widget.routeName,
+          path: Chapter5Widget.routePath,
+          builder: (context, params) => Chapter5Widget(),
+        ),
+        FFRoute(
+          name: Quiz2Widget.routeName,
+          path: Quiz2Widget.routePath,
+          builder: (context, params) => Quiz2Widget(),
+        ),
+        FFRoute(
+          name: Quiz3Widget.routeName,
+          path: Quiz3Widget.routePath,
+          builder: (context, params) => Quiz3Widget(
+            ans1: params.getParam(
+              'ans1',
+              ParamType.String,
+            ),
+            ans2: params.getParam(
+              'ans2',
+              ParamType.String,
+            ),
+            ans3: params.getParam(
+              'ans3',
+              ParamType.String,
+            ),
+            ans4: params.getParam(
+              'ans4',
+              ParamType.String,
+            ),
+            ans5: params.getParam(
+              'ans5',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -268,7 +362,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/homePage';
+            return '/authMethods';
           }
           return null;
         },

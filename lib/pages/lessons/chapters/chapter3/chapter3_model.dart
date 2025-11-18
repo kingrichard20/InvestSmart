@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'screen2_widget.dart' show Screen2Widget;
+import '/index.dart';
+import 'chapter3_widget.dart' show Chapter3Widget;
 import 'package:flutter/material.dart';
 
-class Screen2Model extends FlutterFlowModel<Screen2Widget> {
+class Chapter3Model extends FlutterFlowModel<Chapter3Widget> {
   @override
   void initState(BuildContext context) {}
 
