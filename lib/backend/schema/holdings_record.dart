@@ -40,6 +40,11 @@ class HoldingsRecord extends FirestoreRecord {
   String get averageCost => _averageCost ?? '';
   bool hasAverageCost() => _averageCost != null;
 
+  // "total_cost" field.
+  String? _totalCost;
+  String get totalCost => _totalCost ?? '';
+  bool hasTotalCost() => _totalCost != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -48,6 +53,7 @@ class HoldingsRecord extends FirestoreRecord {
     _assetType = snapshotData['asset_type'] as String?;
     _quantity = snapshotData['quantity'] as String?;
     _averageCost = snapshotData['average_cost'] as String?;
+    _totalCost = snapshotData['total_cost'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -95,6 +101,7 @@ Map<String, dynamic> createHoldingsRecordData({
   String? assetType,
   String? quantity,
   String? averageCost,
+  String? totalCost,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -103,6 +110,7 @@ Map<String, dynamic> createHoldingsRecordData({
       'asset_type': assetType,
       'quantity': quantity,
       'average_cost': averageCost,
+      'total_cost': totalCost,
     }.withoutNulls,
   );
 
@@ -118,12 +126,19 @@ class HoldingsRecordDocumentEquality implements Equality<HoldingsRecord> {
         e1?.name == e2?.name &&
         e1?.assetType == e2?.assetType &&
         e1?.quantity == e2?.quantity &&
-        e1?.averageCost == e2?.averageCost;
+        e1?.averageCost == e2?.averageCost &&
+        e1?.totalCost == e2?.totalCost;
   }
 
   @override
-  int hash(HoldingsRecord? e) => const ListEquality()
-      .hash([e?.ticker, e?.name, e?.assetType, e?.quantity, e?.averageCost]);
+  int hash(HoldingsRecord? e) => const ListEquality().hash([
+        e?.ticker,
+        e?.name,
+        e?.assetType,
+        e?.quantity,
+        e?.averageCost,
+        e?.totalCost
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is HoldingsRecord;

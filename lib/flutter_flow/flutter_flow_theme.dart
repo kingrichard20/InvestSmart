@@ -329,7 +329,7 @@ class ThemeTypography extends Typography {
   String get brandStandardFamily => 'Inter';
   TextStyle get brandStandard => GoogleFonts.inter(
         color: theme.brandTextStandard,
-        fontSize: 20.0,
+        fontSize: 16.0,
       );
   String get brandStandardBoldFamily => 'Inter';
   TextStyle get brandStandardBold => GoogleFonts.inter(
@@ -340,16 +340,18 @@ class ThemeTypography extends Typography {
   String get brandAuthLabelFamily => 'Inter';
   TextStyle get brandAuthLabel => GoogleFonts.inter(
         color: theme.brandTextStandard,
-        fontSize: 18.0,
+        fontWeight: FontWeight.w500,
+        fontSize: 16.0,
       );
   String get brandAuthHintFamily => 'Primary Family';
   TextStyle get brandAuthHint => GoogleFonts.roboto(
         color: theme.brandTextFade,
-        fontSize: 16.0,
+        fontSize: 14.0,
       );
-  String get brandStandardHeaderFamily => 'Primary Family';
-  TextStyle get brandStandardHeader => GoogleFonts.roboto(
+  String get brandStandardHeaderFamily => 'Readex Pro';
+  TextStyle get brandStandardHeader => GoogleFonts.readexPro(
         color: theme.brandTextStandard,
+        fontWeight: FontWeight.bold,
         fontSize: 24.0,
       );
 }

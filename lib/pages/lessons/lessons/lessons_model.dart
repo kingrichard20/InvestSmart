@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'lessons_widget.dart' show LessonsWidget;
@@ -16,11 +15,6 @@ class LessonsModel extends FlutterFlowModel<LessonsWidget> {
   bool? chapter4;
 
   bool? chapter5;
-
-  ///  State fields for stateful widgets in this page.
-
-  // Stores action output result for [Firestore Query - Query a collection] action in Lessons widget.
-  LessonsRecord? userLessonDocument;
 
   @override
   void initState(BuildContext context) {}

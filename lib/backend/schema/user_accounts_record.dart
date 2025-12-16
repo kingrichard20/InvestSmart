@@ -41,15 +41,35 @@ class UserAccountsRecord extends FirestoreRecord {
   String get photoUrl => _photoUrl ?? '';
   bool hasPhotoUrl() => _photoUrl != null;
 
+  // "chapter1_is_completed" field.
+  bool? _chapter1IsCompleted;
+  bool get chapter1IsCompleted => _chapter1IsCompleted ?? false;
+  bool hasChapter1IsCompleted() => _chapter1IsCompleted != null;
+
+  // "chapter2_is_completed" field.
+  bool? _chapter2IsCompleted;
+  bool get chapter2IsCompleted => _chapter2IsCompleted ?? false;
+  bool hasChapter2IsCompleted() => _chapter2IsCompleted != null;
+
+  // "chapter3_is_completed" field.
+  bool? _chapter3IsCompleted;
+  bool get chapter3IsCompleted => _chapter3IsCompleted ?? false;
+  bool hasChapter3IsCompleted() => _chapter3IsCompleted != null;
+
+  // "chapter4_is_completed" field.
+  bool? _chapter4IsCompleted;
+  bool get chapter4IsCompleted => _chapter4IsCompleted ?? false;
+  bool hasChapter4IsCompleted() => _chapter4IsCompleted != null;
+
+  // "chapter5_is_completed" field.
+  bool? _chapter5IsCompleted;
+  bool get chapter5IsCompleted => _chapter5IsCompleted ?? false;
+  bool hasChapter5IsCompleted() => _chapter5IsCompleted != null;
+
   // "phone_number" field.
   String? _phoneNumber;
   String get phoneNumber => _phoneNumber ?? '';
   bool hasPhoneNumber() => _phoneNumber != null;
-
-  // "username" field.
-  String? _username;
-  String get username => _username ?? '';
-  bool hasUsername() => _username != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -57,8 +77,12 @@ class UserAccountsRecord extends FirestoreRecord {
     _uid = snapshotData['uid'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _photoUrl = snapshotData['photo_url'] as String?;
+    _chapter1IsCompleted = snapshotData['chapter1_is_completed'] as bool?;
+    _chapter2IsCompleted = snapshotData['chapter2_is_completed'] as bool?;
+    _chapter3IsCompleted = snapshotData['chapter3_is_completed'] as bool?;
+    _chapter4IsCompleted = snapshotData['chapter4_is_completed'] as bool?;
+    _chapter5IsCompleted = snapshotData['chapter5_is_completed'] as bool?;
     _phoneNumber = snapshotData['phone_number'] as String?;
-    _username = snapshotData['username'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -101,8 +125,12 @@ Map<String, dynamic> createUserAccountsRecordData({
   String? uid,
   DateTime? createdTime,
   String? photoUrl,
+  bool? chapter1IsCompleted,
+  bool? chapter2IsCompleted,
+  bool? chapter3IsCompleted,
+  bool? chapter4IsCompleted,
+  bool? chapter5IsCompleted,
   String? phoneNumber,
-  String? username,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -111,8 +139,12 @@ Map<String, dynamic> createUserAccountsRecordData({
       'uid': uid,
       'created_time': createdTime,
       'photo_url': photoUrl,
+      'chapter1_is_completed': chapter1IsCompleted,
+      'chapter2_is_completed': chapter2IsCompleted,
+      'chapter3_is_completed': chapter3IsCompleted,
+      'chapter4_is_completed': chapter4IsCompleted,
+      'chapter5_is_completed': chapter5IsCompleted,
       'phone_number': phoneNumber,
-      'username': username,
     }.withoutNulls,
   );
 
@@ -130,8 +162,12 @@ class UserAccountsRecordDocumentEquality
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
         e1?.photoUrl == e2?.photoUrl &&
-        e1?.phoneNumber == e2?.phoneNumber &&
-        e1?.username == e2?.username;
+        e1?.chapter1IsCompleted == e2?.chapter1IsCompleted &&
+        e1?.chapter2IsCompleted == e2?.chapter2IsCompleted &&
+        e1?.chapter3IsCompleted == e2?.chapter3IsCompleted &&
+        e1?.chapter4IsCompleted == e2?.chapter4IsCompleted &&
+        e1?.chapter5IsCompleted == e2?.chapter5IsCompleted &&
+        e1?.phoneNumber == e2?.phoneNumber;
   }
 
   @override
@@ -141,8 +177,12 @@ class UserAccountsRecordDocumentEquality
         e?.uid,
         e?.createdTime,
         e?.photoUrl,
-        e?.phoneNumber,
-        e?.username
+        e?.chapter1IsCompleted,
+        e?.chapter2IsCompleted,
+        e?.chapter3IsCompleted,
+        e?.chapter4IsCompleted,
+        e?.chapter5IsCompleted,
+        e?.phoneNumber
       ]);
 
   @override

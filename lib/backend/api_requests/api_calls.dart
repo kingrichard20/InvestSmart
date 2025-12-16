@@ -6,22 +6,20 @@ import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
 
-const _kPrivateApiFunctionName = 'ffPrivateApiCall';
+const _kPrivateApiFunctionName = 'APIAssetPrice';
 
 class GetAssetPriceCall {
   static Future<ApiCallResponse> call({
     String? companyTicker = '',
-    String? alphaVantageApiKey = 'VR51DVAHG6KXPWV2',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Asset Price',
       apiUrl:
-          'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${companyTicker}&apikey=${alphaVantageApiKey}',
+          'https://us-central1-investsmart-aa9eb.cloudfunctions.net/assetGlobalQuote',
       callType: ApiCallType.GET,
       headers: {},
       params: {
         'ticker': companyTicker,
-        'apikey': alphaVantageApiKey,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -46,6 +44,10 @@ class GetAssetPriceCall {
         response,
         r'''$['Global Quote']['10. change percent']''',
       ));
+  static String? volume(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$['Global Quote']['06. volume']''',
+      ));
 }
 
 class GetAssetInfoCall {
@@ -55,7 +57,7 @@ class GetAssetInfoCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Asset Info',
       apiUrl:
-          'https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyTicker}&apikey=VR51DVAHG6KXPWV2',
+          'https://us-central1-investsmart-aa9eb.cloudfunctions.net/assetOverview',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -98,10 +100,6 @@ class GetAssetInfoCall {
   static String? pEGRatio(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.PEGRatio''',
-      ));
-  static String? bookValue(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$.BookValue''',
       ));
   static String? earningsPerShare(dynamic response) =>
       castToType<String>(getJsonField(
@@ -168,6 +166,76 @@ class GetAssetInfoCall {
         response,
         r'''$.QuarterlyRevenueGrowthYOY''',
       ));
+  static String? ticker(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.Symbol''',
+      ));
+  static String? beta(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.Beta''',
+      ));
+  static String? exchange(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.Exchange''',
+      ));
+  static String? insiderOwnership(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.PercentInsiders''',
+      ));
+  static String? institutionalOwnership(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.PercentInstitutions''',
+      ));
+  static String? analystPriceTarget(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.AnalystTargetPrice''',
+      ));
+  static String? strongBuyRating(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.AnalystRatingStrongBuy''',
+      ));
+  static String? buyRating(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.AnalystRatingBuy''',
+      ));
+  static String? holdRating(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.AnalystRatingHold''',
+      ));
+  static String? sellRating(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.AnalystRatingSell''',
+      ));
+  static String? strongSellRating(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.AnalystRatingStrongSell''',
+      ));
+  static String? sharesOutstanding(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.SharesOutstanding''',
+      ));
+  static String? float(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.SharesFloat''',
+      ));
+  static String? fiftyTwoWeekLow(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$['52WeekLow']''',
+      ));
+  static String? fiftyTwoWeekHigh(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$['52WeekHigh']''',
+      ));
 }
 
 class SearchCall {
@@ -177,11 +245,11 @@ class SearchCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Search',
       apiUrl:
-          'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${input}&apikey=VR51DVAHG6KXPWV2',
+          'https://us-central1-investsmart-aa9eb.cloudfunctions.net/assetSearch',
       callType: ApiCallType.GET,
       headers: {},
       params: {
-        'search_input': input,
+        'keywords': input,
       },
       returnBody: true,
       encodeBodyUtf8: false,

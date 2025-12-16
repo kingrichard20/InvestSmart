@@ -8,61 +8,93 @@ import 'package:flutter/material.dart';
 class BuyModel extends FlutterFlowModel<BuyWidget> {
   ///  Local state fields for this page.
 
-  String? description;
+  String description = '';
 
-  String? assetType;
+  String assetType = '';
 
-  String? sector;
+  String sector = '';
 
-  String? industry;
+  String industry = '';
 
-  String? marketCap;
+  String marketCap = '0';
 
-  String? pegRatio;
+  String pegRatio = '0.00';
 
-  String? bookValue;
+  String eps = '0.00';
 
-  String? eps;
+  String forwardPE = '0.00';
 
-  String? forwardPE;
+  String trailingPE = '0.00';
 
-  String? trailingPE;
+  String ebitda = '0';
 
-  String? ebitda;
+  String revenuePerShare = '0.00';
 
-  String? revenuePerShare;
+  String profitMargin = '0.00';
 
-  String? profitMargin;
+  String revenue = '0';
 
-  String? revenue;
+  String grossProfit = '0';
 
-  String? grossProfit;
+  String dividendPerShare = '0.00';
 
-  String? dividendPerShare;
+  String dividendYield = '0.00';
 
-  String? dividendYield;
+  String dividendDate = '0/0/0000';
 
-  String? dividendDate;
+  String exDividendDate = '0/0/0000';
 
-  String? exDividendDate;
+  String quarterlyEarningsGrowth = '0.00';
 
-  String? quarterlyEarningsGrowth;
+  String quarterlyRevenueGrowth = '0.00';
 
-  String? quarterlyRevenueGrowth;
+  String ticker = '';
 
-  String? ticker;
+  String name = '';
 
-  String? name;
+  String todaysChange = '0.00';
 
-  String? todaysChange;
+  String todaysChangePercent = '0.00';
 
-  String? todaysChangePercent;
+  String price = '0.00';
 
-  String? price;
+  String shares = '0.00';
 
-  String? shares;
+  String totalCost = '0.00';
 
-  String? totalCost;
+  String pageStatus = 'loading';
+
+  double strongBuy = 0.0;
+
+  double buy = 0.0;
+
+  double hold = 0.0;
+
+  double sell = 0.0;
+
+  double strongSell = 0.0;
+
+  String analystPriceTarget = '0.00';
+
+  String numberOfRatings = '0';
+
+  String beta = '0.00';
+
+  String exchange = '';
+
+  String float = '0';
+
+  String outstandingShares = '0';
+
+  double insiderOwnership = 0.0;
+
+  double institutionalOwnership = 0.0;
+
+  double reatilOwnership = 0.0;
+
+  String fiftyTwoWeekLow = '0.00';
+
+  String fiftyTwoWeekHigh = '0.00';
 
   ///  State fields for stateful widgets in this page.
 
@@ -70,6 +102,10 @@ class BuyModel extends FlutterFlowModel<BuyWidget> {
   ApiCallResponse? assetInfo;
   // Stores action output result for [Backend Call - API (Get Asset Price)] action in Buy widget.
   ApiCallResponse? assetPrice;
+  // State field(s) for Loading-Indicator widget.
+  late bool loadingIndicatorStatus;
+  // State field(s) for Slider widget.
+  double? sliderValue;
   // State field(s) for Shares-to-Buy widget.
   FocusNode? sharesToBuyFocusNode;
   TextEditingController? sharesToBuyTextController;
@@ -78,7 +114,9 @@ class BuyModel extends FlutterFlowModel<BuyWidget> {
   HoldingsRecord? holdingsDocument;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    loadingIndicatorStatus = true;
+  }
 
   @override
   void dispose() {

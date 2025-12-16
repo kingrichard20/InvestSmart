@@ -8,6 +8,7 @@ Future initializeFirebaseRemoteConfig() async {
     ));
     await FirebaseRemoteConfig.instance.setDefaults(const {
       'home_page_is_lessons': false,
+      'quiz_button_top_display': true,
     });
     await FirebaseRemoteConfig.instance.fetchAndActivate();
   } catch (error) {

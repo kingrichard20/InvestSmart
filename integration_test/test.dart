@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:invest_smart/flutter_flow/flutter_flow_drop_down.dart';
 import 'package:invest_smart/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:invest_smart/flutter_flow/flutter_flow_radio_button.dart';
 import 'package:invest_smart/flutter_flow/flutter_flow_widgets.dart';
@@ -13,6 +12,7 @@ import 'package:invest_smart/index.dart';
 import 'package:invest_smart/main.dart';
 import 'package:invest_smart/flutter_flow/flutter_flow_util.dart';
 
+import 'package:provider/provider.dart';
 import 'package:invest_smart/backend/firebase/firebase_config.dart';
 import 'package:invest_smart/auth/firebase_auth/auth_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,19 +26,25 @@ void main() async {
 
   setUp(() async {
     await authManager.signOut();
+    FFAppState.reset();
+    final appState = FFAppState();
+    await appState.initializePersistedState();
   });
 
   testWidgets('User Login', (WidgetTester tester) async {
     _overrideOnError();
 
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(ChangeNotifierProvider(
+      create: (context) => FFAppState(),
+      child: const MyApp(),
+    ));
     await GoogleFonts.pendingFonts();
 
     await tester.tap(find.byKey(const ValueKey('LoginTab_jbxv')));
     await tester.enterText(find.byKey(const ValueKey('Login-Email_9xid')),
         'nathanfeinberg@uri.edu');
     await tester.enterText(
-        find.byKey(const ValueKey('auth_methods_gfrw')), 'coolpass1');
+        find.byKey(const ValueKey('Authentication_gfrw')), 'coolpass1');
     await tester.tap(find.byKey(const ValueKey('Login-Button_w2k2')));
     await tester.pumpAndSettle();
     expect(find.text('Profile'), findsOneWidget);

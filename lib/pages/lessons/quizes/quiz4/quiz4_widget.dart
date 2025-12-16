@@ -1,6 +1,5 @@
-import '/flutter_flow/flutter_flow_choice_chips.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -8,6 +7,7 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'quiz4_model.dart';
 export 'quiz4_model.dart';
 
@@ -20,7 +20,27 @@ export 'quiz4_model.dart';
 /// low and selling high, Profit-taking, Setting Stop Losses, Diversification,
 /// Only investing money you can afford to lose, Investing consistently.
 class Quiz4Widget extends StatefulWidget {
-  const Quiz4Widget({super.key});
+  const Quiz4Widget({
+    super.key,
+    String? ans1,
+    String? ans2,
+    String? ans3,
+    String? ans4,
+    String? ans5,
+  })  : this.ans1 = ans1 ??
+            'To naturally buy more shares when prices are low and fewer when prices are high',
+        this.ans2 = ans2 ?? 'Identifying undervalued assets through research',
+        this.ans3 = ans3 ??
+            'It secures some gains while still leaving room for further potential growth',
+        this.ans4 = ans4 ??
+            'One that spreads investments across stocks, bonds, and other asset classes',
+        this.ans5 = ans5 ?? 'Making decisions based on fear or hype';
+
+  final String ans1;
+  final String ans2;
+  final String ans3;
+  final String ans4;
+  final String ans5;
 
   static String routeName = 'Quiz4';
   static String routePath = '/quiz4';
@@ -40,8 +60,7 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
     _model = createModel(context, () => Quiz4Model());
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Quiz4'});
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -53,6 +72,8 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -164,7 +185,10 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                         child: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            '5/5',
+                            valueOrDefault<String>(
+                              FFAppState().correctAns4.toString(),
+                              '0',
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .titleMedium
                                 .override(
@@ -203,6 +227,7 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -214,7 +239,7 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Smart Investment Strategies & Tips to Avoid Traps',
+                              'Smart Investment Strategies and Key Tips to Avoiding Traps',
                               style: FlutterFlowTheme.of(context)
                                   .headlineMedium
                                   .override(
@@ -247,7 +272,6 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                     padding: EdgeInsets.zero,
                   ),
                   Container(
-                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(12.0),
@@ -257,9 +281,10 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -300,7 +325,7 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                               ),
                               Expanded(
                                 child: Text(
-                                  'What is the main benefit of dollar cost averaging?',
+                                  'Why might an investor choose to invest the same amount of money at regular intervals?',
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(
@@ -321,287 +346,146 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                               ),
                               Stack(
                                 children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.check_rounded,
-                                        color: Color(0xFF218913),
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Correct',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                  if (widget.ans1 == _model.radioButton41Value)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.check_rounded,
+                                          color: Color(0xFF218913),
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Correct',
+                                          style: FlutterFlowTheme.of(context)
+                                              .brandStandardBold
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .brandStandardBold
+                                                          .fontStyle,
+                                                ),
+                                                color: Color(0xFF218913),
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .brandStandardBold
                                                         .fontStyle,
                                               ),
-                                              color: Color(0xFF218913),
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.close_rounded,
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Wrong',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                        ),
+                                      ],
+                                    ),
+                                  if (widget.ans1 != _model.radioButton41Value)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.close_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Wrong',
+                                          style: FlutterFlowTheme.of(context)
+                                              .brandStandardBold
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .brandStandardBold
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .brandStandardBold
                                                         .fontStyle,
                                               ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
+                                        ),
+                                      ],
+                                    ),
                                 ],
                               ),
                             ].divide(SizedBox(width: 8.0)),
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 12.0, 0.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .brandAccent1,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .brandTextStandard,
-                                      width: 2.0,
-                                    ),
+                          FlutterFlowRadioButton(
+                            options: [
+                              'To maximize returns during sudden market spikes',
+                              'To naturally buy more shares when prices are low and fewer when prices are high',
+                              'To avoid monitoring the market altogether',
+                              'To guarantee they never lose money'
+                            ].toList(),
+                            onChanged: (val) => safeSetState(() {}),
+                            controller: _model.radioButton41ValueController ??=
+                                FormFieldController<String>(
+                                    'To naturally buy more shares when prices are low and fewer when prices are high'),
+                            optionHeight: 40.0,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(12.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.radio_button_checked,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 20.0,
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 0.0, 12.0, 0.0),
-                                            child: Text(
-                                              'It reduces the impact of market volatility over time',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
-                                Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .brandTextStandard,
-                                      width: 2.0,
-                                    ),
+                            selectedTextStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(12.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.radio_button_unchecked,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 20.0,
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 0.0, 12.0, 0.0),
-                                            child: Text(
-                                              'It guarantees higher returns',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                  color:
+                                      FlutterFlowTheme.of(context).brandAccent1,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
-                                Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .brandTextStandard,
-                                      width: 2.0,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(12.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.radio_button_unchecked,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 20.0,
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 0.0, 12.0, 0.0),
-                                            child: Text(
-                                              'It allows you to time the market perfectly',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ].divide(SizedBox(height: 8.0)),
-                            ),
+                            buttonPosition: RadioButtonPosition.left,
+                            direction: Axis.vertical,
+                            radioButtonColor:
+                                FlutterFlowTheme.of(context).brandAccent1,
+                            inactiveRadioButtonColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            toggleable: false,
+                            horizontalAlignment: WrapAlignment.start,
+                            verticalAlignment: WrapCrossAlignment.start,
                           ),
-                        ],
+                        ].divide(SizedBox(height: 16.0)),
                       ),
                     ),
                   ),
                   Container(
-                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(12.0),
@@ -611,9 +495,10 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -654,7 +539,7 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                               ),
                               Expanded(
                                 child: Text(
-                                  'What Percentage of your income should you invest in high-risk assets as a beginner?',
+                                  'What skill is most important for recognizing good entry points for an investment?',
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(
@@ -675,225 +560,146 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                               ),
                               Stack(
                                 children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.check_rounded,
-                                        color: Color(0xFF218913),
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Correct',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                  if (widget.ans2 == _model.radioButton42Value)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.check_rounded,
+                                          color: Color(0xFF218913),
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Correct',
+                                          style: FlutterFlowTheme.of(context)
+                                              .brandStandardBold
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .brandStandardBold
+                                                          .fontStyle,
+                                                ),
+                                                color: Color(0xFF218913),
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .brandStandardBold
                                                         .fontStyle,
                                               ),
-                                              color: Color(0xFF218913),
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.close_rounded,
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Wrong',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                        ),
+                                      ],
+                                    ),
+                                  if (widget.ans2 != _model.radioButton42Value)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.close_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Wrong',
+                                          style: FlutterFlowTheme.of(context)
+                                              .brandStandardBold
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .brandStandardBold
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .brandStandardBold
                                                         .fontStyle,
                                               ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
+                                        ),
+                                      ],
+                                    ),
                                 ],
                               ),
                             ].divide(SizedBox(width: 8.0)),
                           ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    '0%',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontStyle,
-                                          ),
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontStyle,
-                                        ),
+                          FlutterFlowRadioButton(
+                            options: [
+                              'Predicting exact market tops',
+                              'Identifying undervalued assets through research',
+                              'Following social media trends',
+                              'Buying only when prices are rising quickly'
+                            ].toList(),
+                            onChanged: (val) => safeSetState(() {}),
+                            controller: _model.radioButton42ValueController ??=
+                                FormFieldController<String>(
+                                    'Identifying undervalued assets through research'),
+                            optionHeight: 40.0,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
-                                  Text(
-                                    '50%',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontStyle,
-                                          ),
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontStyle,
-                                        ),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                            selectedTextStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
-                                  Text(
-                                    '100%',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontStyle,
-                                          ),
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 40.0,
-                                decoration: BoxDecoration(
                                   color:
                                       FlutterFlowTheme.of(context).brandAccent1,
-                                  borderRadius: BorderRadius.circular(20.0),
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 16.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(0.3, 0.0),
-                                        child: Container(
-                                          width: 20.0,
-                                          height: 20.0,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFF448929),
-                                            shape: BoxShape.circle,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'Selected: 15%',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .brandStandardBold
-                                    .override(
-                                      font: GoogleFonts.inter(
-                                        fontWeight: FontWeight.bold,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .brandTextStandard,
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .brandStandardBold
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ].divide(SizedBox(height: 12.0)),
+                            buttonPosition: RadioButtonPosition.left,
+                            direction: Axis.vertical,
+                            radioButtonColor:
+                                FlutterFlowTheme.of(context).brandAccent1,
+                            inactiveRadioButtonColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            toggleable: false,
+                            horizontalAlignment: WrapAlignment.start,
+                            verticalAlignment: WrapCrossAlignment.start,
                           ),
                         ].divide(SizedBox(height: 16.0)),
                       ),
                     ),
                   ),
                   Container(
-                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(12.0),
@@ -903,9 +709,10 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -946,7 +753,7 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                               ),
                               Expanded(
                                 child: Text(
-                                  'Explain when you would use a stop loss order and why it\'s important for beginners.',
+                                  'What is one advantage of selling a portion of an investment after it rises significantly?',
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(
@@ -967,138 +774,94 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                               ),
                               Stack(
                                 children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.check_rounded,
-                                        color: Color(0xFF218913),
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Correct',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                  if (widget.ans3 == _model.radioButton43Value)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.check_rounded,
+                                          color: Color(0xFF218913),
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Correct',
+                                          style: FlutterFlowTheme.of(context)
+                                              .brandStandardBold
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .brandStandardBold
+                                                          .fontStyle,
+                                                ),
+                                                color: Color(0xFF218913),
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .brandStandardBold
                                                         .fontStyle,
                                               ),
-                                              color: Color(0xFF218913),
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.close_rounded,
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Wrong',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                        ),
+                                      ],
+                                    ),
+                                  if (widget.ans3 != _model.radioButton43Value)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.close_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Wrong',
+                                          style: FlutterFlowTheme.of(context)
+                                              .brandStandardBold
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .brandStandardBold
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .brandStandardBold
                                                         .fontStyle,
                                               ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
+                                        ),
+                                      ],
+                                    ),
                                 ],
                               ),
                             ].divide(SizedBox(width: 8.0)),
                           ),
-                          TextFormField(
-                            controller: _model.textController,
-                            focusNode: _model.textFieldFocusNode,
-                            autofocus: false,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              hintText: 'Type your answer here...',
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              filled: true,
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                            ),
-                            style: FlutterFlowTheme.of(context)
+                          FlutterFlowRadioButton(
+                            options: [
+                              'It eliminates all future risk',
+                              'It guarantees the investment will continue to grow',
+                              'It secures some gains while still leaving room for further potential growth',
+                              'It increases taxes in the short term'
+                            ].toList(),
+                            onChanged: (val) => safeSetState(() {}),
+                            controller: _model.radioButton43ValueController ??=
+                                FormFieldController<String>(
+                                    'It secures some gains while still leaving room for further potential growth'),
+                            optionHeight: 40.0,
+                            textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   font: GoogleFonts.inter(
@@ -1109,6 +872,8 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                                         .bodyMedium
                                         .fontStyle,
                                   ),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -1117,17 +882,38 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                                       .bodyMedium
                                       .fontStyle,
                                 ),
-                            maxLines: 4,
-                            minLines: 3,
-                            validator: _model.textControllerValidator
-                                .asValidator(context),
+                            selectedTextStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                                  color:
+                                      FlutterFlowTheme.of(context).brandAccent1,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                            buttonPosition: RadioButtonPosition.left,
+                            direction: Axis.vertical,
+                            radioButtonColor:
+                                FlutterFlowTheme.of(context).brandAccent1,
+                            inactiveRadioButtonColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            toggleable: false,
+                            horizontalAlignment: WrapAlignment.start,
+                            verticalAlignment: WrapCrossAlignment.start,
                           ),
                         ].divide(SizedBox(height: 16.0)),
                       ),
                     ),
                   ),
                   Container(
-                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(12.0),
@@ -1137,9 +923,10 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1180,7 +967,7 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                               ),
                               Expanded(
                                 child: Text(
-                                  'Which investment approach best represents proper diversification?',
+                                  'Which portfolio is generally considered the lowest risk?',
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(
@@ -1201,90 +988,93 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                               ),
                               Stack(
                                 children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.check_rounded,
-                                        color: Color(0xFF218913),
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Correct',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                  if (widget.ans4 == _model.radioButton44Value)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.check_rounded,
+                                          color: Color(0xFF218913),
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Correct',
+                                          style: FlutterFlowTheme.of(context)
+                                              .brandStandardBold
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .brandStandardBold
+                                                          .fontStyle,
+                                                ),
+                                                color: Color(0xFF218913),
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .brandStandardBold
                                                         .fontStyle,
                                               ),
-                                              color: Color(0xFF218913),
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.close_rounded,
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Wrong',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                        ),
+                                      ],
+                                    ),
+                                  if (widget.ans4 != _model.radioButton44Value)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.close_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Wrong',
+                                          style: FlutterFlowTheme.of(context)
+                                              .brandStandardBold
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .brandStandardBold
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .brandStandardBold
                                                         .fontStyle,
                                               ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
+                                        ),
+                                      ],
+                                    ),
                                 ],
                               ),
                             ].divide(SizedBox(width: 8.0)),
                           ),
-                          FlutterFlowDropDown<String>(
-                            controller: _model.dropDownValueController1 ??=
-                                FormFieldController<String>(null),
+                          FlutterFlowRadioButton(
                             options: [
-                              'Investing all money in one tech stock',
-                              'Spreading investments across different asset classes',
-                              'Only buying stocks from your home country',
-                              'Investing only in cryptocurrency'
-                            ],
-                            onChanged: (val) =>
-                                safeSetState(() => _model.dropDownValue1 = val),
-                            width: double.infinity,
-                            height: 50.0,
+                              'One invested entirely in technology stocks',
+                              'One that spreads investments across stocks, bonds, and other asset classes',
+                              'One focused only on crypto assets',
+                              'One invested solely in a single company with high growth'
+                            ].toList(),
+                            onChanged: (val) => safeSetState(() {}),
+                            controller: _model.radioButton44ValueController ??=
+                                FormFieldController<String>(
+                                    'One that spreads investments across stocks, bonds, and other asset classes'),
+                            optionHeight: 40.0,
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -1296,6 +1086,8 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                                         .bodyMedium
                                         .fontStyle,
                                   ),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -1304,30 +1096,38 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                                       .bodyMedium
                                       .fontStyle,
                                 ),
-                            hintText: '  Select your answer...',
-                            icon: Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
-                            ),
-                            fillColor:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            elevation: 0.0,
-                            borderColor: FlutterFlowTheme.of(context).alternate,
-                            borderWidth: 1.0,
-                            borderRadius: 8.0,
-                            margin: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            hidesUnderline: true,
-                            isSearchable: false,
-                            isMultiSelect: false,
+                            selectedTextStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                                  color:
+                                      FlutterFlowTheme.of(context).brandAccent1,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                            buttonPosition: RadioButtonPosition.left,
+                            direction: Axis.vertical,
+                            radioButtonColor:
+                                FlutterFlowTheme.of(context).brandAccent1,
+                            inactiveRadioButtonColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            toggleable: false,
+                            horizontalAlignment: WrapAlignment.start,
+                            verticalAlignment: WrapCrossAlignment.start,
                           ),
                         ].divide(SizedBox(height: 16.0)),
                       ),
                     ),
                   ),
                   Container(
-                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(12.0),
@@ -1337,9 +1137,10 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1380,7 +1181,7 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                               ),
                               Expanded(
                                 child: Text(
-                                  'Which of these strategies should beginners focus on? (Select all that apply)',
+                                  'Which behavior is most likely to lead investors into costly mistakes?',
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(
@@ -1401,627 +1202,93 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                               ),
                               Stack(
                                 children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.check_rounded,
-                                        color: Color(0xFF218913),
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Correct',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                  if (widget.ans5 == _model.radioButton45Value)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.check_rounded,
+                                          color: Color(0xFF218913),
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Correct',
+                                          style: FlutterFlowTheme.of(context)
+                                              .brandStandardBold
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .brandStandardBold
+                                                          .fontStyle,
+                                                ),
+                                                color: Color(0xFF218913),
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .brandStandardBold
                                                         .fontStyle,
                                               ),
-                                              color: Color(0xFF218913),
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.close_rounded,
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Wrong',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .brandStandardBold
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ].divide(SizedBox(width: 8.0)),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              FlutterFlowChoiceChips(
-                                options: [ChipData('')],
-                                onChanged: (val) => safeSetState(
-                                    () => _model.choiceChipsValues = val),
-                                selectedChipStyle: ChipStyle(
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).brandAccent1,
-                                  textStyle: TextStyle(),
-                                  iconColor: Color(0x00000000),
-                                  iconSize: 0.0,
-                                  elevation: 0.0,
-                                ),
-                                unselectedChipStyle: ChipStyle(
-                                  backgroundColor: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  textStyle: TextStyle(),
-                                  iconColor: Color(0x00000000),
-                                  iconSize: 0.0,
-                                  elevation: 0.0,
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  borderWidth: 1.0,
-                                ),
-                                chipSpacing: 8.0,
-                                rowSpacing: 8.0,
-                                multiselect: true,
-                                initialized: _model.choiceChipsValues != null,
-                                controller:
-                                    _model.choiceChipsValueController ??=
-                                        FormFieldController<List<String>>(
-                                  [],
-                                ),
-                                wrapped: false,
-                              ),
-                            ].divide(SizedBox(height: 8.0)),
-                          ),
-                        ].divide(SizedBox(height: 16.0)),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(12.0),
-                      border: Border.all(
-                        color: FlutterFlowTheme.of(context).alternate,
-                        width: 1.0,
-                      ),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF448929),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      '6',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .info,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  'You bought a stock at \$50 and it\'s now worth \$75. What\'s your next move? (Hint: There can be more than one answer)',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleMedium
-                                                  .fontStyle,
+                                  if (widget.ans5 != _model.radioButton45Value)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.close_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          size: 24.0,
                                         ),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                              ),
-                              Stack(
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.check_rounded,
-                                        color: Color(0xFF218913),
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Correct',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                        Text(
+                                          'Wrong',
+                                          style: FlutterFlowTheme.of(context)
+                                              .brandStandardBold
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .brandStandardBold
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .brandStandardBold
                                                         .fontStyle,
                                               ),
-                                              color: Color(0xFF218913),
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.close_rounded,
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Wrong',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .brandStandardBold
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ].divide(SizedBox(width: 8.0)),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 1.0,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(12.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.radio_button_unchecked,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 20.0,
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 12.0, 0.0),
-                                          child: Text(
-                                            'Sell everything immediately',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 1.0,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(12.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.radio_button_unchecked,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 20.0,
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 12.0, 0.0),
-                                          child: Text(
-                                            'Hold and wait for more gains',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 1.0,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(12.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.radio_button_unchecked,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 20.0,
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 12.0, 0.0),
-                                          child: Text(
-                                            'Take partial profits and reassess',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ].divide(SizedBox(height: 8.0)),
-                          ),
-                        ].divide(SizedBox(height: 16.0)),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(12.0),
-                      border: Border.all(
-                        color: FlutterFlowTheme.of(context).alternate,
-                        width: 1.0,
-                      ),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF448929),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      '7',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .info,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
+                                      ],
                                     ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  'How often should a beginner investor review and adjust their portfolio?',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleMedium
-                                                  .fontStyle,
-                                        ),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                              ),
-                              Stack(
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.check_rounded,
-                                        color: Color(0xFF218913),
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Correct',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .brandStandardBold
-                                                        .fontStyle,
-                                              ),
-                                              color: Color(0xFF218913),
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.close_rounded,
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Wrong',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .brandStandardBold
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
                                 ],
                               ),
                             ].divide(SizedBox(width: 8.0)),
                           ),
-                          FlutterFlowDropDown<String>(
-                            controller: _model.dropDownValueController2 ??=
-                                FormFieldController<String>(null),
+                          FlutterFlowRadioButton(
                             options: [
-                              'Daily',
-                              'Weekly',
-                              'Monthly',
-                              'Quarterly',
-                              'Annually'
-                            ],
-                            onChanged: (val) =>
-                                safeSetState(() => _model.dropDownValue2 = val),
-                            width: double.infinity,
-                            height: 50.0,
+                              'Following a long-term investment plan',
+                              'Making decisions based on fear or hype',
+                              'Rebalancing a portfolio periodically',
+                              'Reviewing investment performance once a year'
+                            ].toList(),
+                            onChanged: (val) => safeSetState(() {}),
+                            controller: _model.radioButton45ValueController ??=
+                                FormFieldController<String>(
+                                    'Making decisions based on fear or hype'),
+                            optionHeight: 40.0,
                             textStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -2033,6 +1300,8 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                                         .bodyMedium
                                         .fontStyle,
                                   ),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -2041,23 +1310,32 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                                       .bodyMedium
                                       .fontStyle,
                                 ),
-                            hintText: '  Choose frequency...',
-                            icon: Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
-                            ),
-                            fillColor:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            elevation: 0.0,
-                            borderColor: FlutterFlowTheme.of(context).alternate,
-                            borderWidth: 1.0,
-                            borderRadius: 8.0,
-                            margin: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            hidesUnderline: true,
-                            isSearchable: false,
-                            isMultiSelect: false,
+                            selectedTextStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                                  color:
+                                      FlutterFlowTheme.of(context).brandAccent1,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                            buttonPosition: RadioButtonPosition.left,
+                            direction: Axis.vertical,
+                            radioButtonColor:
+                                FlutterFlowTheme.of(context).brandAccent1,
+                            inactiveRadioButtonColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            toggleable: false,
+                            horizontalAlignment: WrapAlignment.start,
+                            verticalAlignment: WrapCrossAlignment.start,
                           ),
                         ].divide(SizedBox(height: 16.0)),
                       ),
@@ -2071,8 +1349,33 @@ class _Quiz4WidgetState extends State<Quiz4Widget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FFButtonWidget(
-                          onPressed: () {
-                            print('Submit-Button pressed ...');
+                          onPressed: () async {
+                            safeSetState(() {});
+                            if (widget.ans1 == _model.radioButton41Value) {
+                              FFAppState().correctAns4 =
+                                  FFAppState().correctAns4 + 1;
+                              safeSetState(() {});
+                            }
+                            if (widget.ans2 == _model.radioButton42Value) {
+                              FFAppState().correctAns4 =
+                                  FFAppState().correctAns4 + 1;
+                              safeSetState(() {});
+                            }
+                            if (widget.ans3 == _model.radioButton43Value) {
+                              FFAppState().correctAns4 =
+                                  FFAppState().correctAns4 + 1;
+                              safeSetState(() {});
+                            }
+                            if (widget.ans4 == _model.radioButton44Value) {
+                              FFAppState().correctAns4 =
+                                  FFAppState().correctAns4 + 1;
+                              safeSetState(() {});
+                            }
+                            if (widget.ans5 == _model.radioButton45Value) {
+                              FFAppState().correctAns4 =
+                                  FFAppState().correctAns4 + 1;
+                              safeSetState(() {});
+                            }
                           },
                           text: 'Submit Quiz',
                           options: FFButtonOptions(

@@ -1,6 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
+import '/index.dart';
 import 'search_widget.dart' show SearchWidget;
 import 'package:flutter/material.dart';
 
@@ -23,6 +23,8 @@ class SearchModel extends FlutterFlowModel<SearchWidget> {
           int index, Function(dynamic) updateFn) =>
       tickerSearchResults[index] = updateFn(tickerSearchResults[index]);
 
+  bool isLoading = true;
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for SearchBar widget.
@@ -31,12 +33,6 @@ class SearchModel extends FlutterFlowModel<SearchWidget> {
   String? Function(BuildContext, String?)? searchBarTextControllerValidator;
   // Stores action output result for [Backend Call - API (Search)] action in SearchBar widget.
   ApiCallResponse? searchResults;
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController;
-  String? get choiceChipsValue =>
-      choiceChipsValueController?.value?.firstOrNull;
-  set choiceChipsValue(String? val) =>
-      choiceChipsValueController?.value = val != null ? [val] : [];
 
   @override
   void initState(BuildContext context) {}

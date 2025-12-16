@@ -41,19 +41,24 @@ class TransactionsRecord extends FirestoreRecord {
   bool hasAssetType() => _assetType != null;
 
   // "quantity" field.
-  double? _quantity;
-  double get quantity => _quantity ?? 0.0;
+  String? _quantity;
+  String get quantity => _quantity ?? '';
   bool hasQuantity() => _quantity != null;
 
   // "price" field.
-  double? _price;
-  double get price => _price ?? 0.0;
+  String? _price;
+  String get price => _price ?? '';
   bool hasPrice() => _price != null;
 
-  // "total_amount" field.
-  double? _totalAmount;
-  double get totalAmount => _totalAmount ?? 0.0;
-  bool hasTotalAmount() => _totalAmount != null;
+  // "profit" field.
+  String? _profit;
+  String get profit => _profit ?? '';
+  bool hasProfit() => _profit != null;
+
+  // "cost" field.
+  String? _cost;
+  String get cost => _cost ?? '';
+  bool hasCost() => _cost != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
@@ -63,9 +68,10 @@ class TransactionsRecord extends FirestoreRecord {
     _ticker = snapshotData['ticker'] as String?;
     _name = snapshotData['name'] as String?;
     _assetType = snapshotData['asset_type'] as String?;
-    _quantity = castToType<double>(snapshotData['quantity']);
-    _price = castToType<double>(snapshotData['price']);
-    _totalAmount = castToType<double>(snapshotData['total_amount']);
+    _quantity = snapshotData['quantity'] as String?;
+    _price = snapshotData['price'] as String?;
+    _profit = snapshotData['profit'] as String?;
+    _cost = snapshotData['cost'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -113,9 +119,10 @@ Map<String, dynamic> createTransactionsRecordData({
   String? ticker,
   String? name,
   String? assetType,
-  double? quantity,
-  double? price,
-  double? totalAmount,
+  String? quantity,
+  String? price,
+  String? profit,
+  String? cost,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -126,7 +133,8 @@ Map<String, dynamic> createTransactionsRecordData({
       'asset_type': assetType,
       'quantity': quantity,
       'price': price,
-      'total_amount': totalAmount,
+      'profit': profit,
+      'cost': cost,
     }.withoutNulls,
   );
 
@@ -146,7 +154,8 @@ class TransactionsRecordDocumentEquality
         e1?.assetType == e2?.assetType &&
         e1?.quantity == e2?.quantity &&
         e1?.price == e2?.price &&
-        e1?.totalAmount == e2?.totalAmount;
+        e1?.profit == e2?.profit &&
+        e1?.cost == e2?.cost;
   }
 
   @override
@@ -158,7 +167,8 @@ class TransactionsRecordDocumentEquality
         e?.assetType,
         e?.quantity,
         e?.price,
-        e?.totalAmount
+        e?.profit,
+        e?.cost
       ]);
 
   @override

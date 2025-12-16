@@ -48,6 +48,7 @@ class _Quiz3WidgetState extends State<Quiz3Widget> {
     _model = createModel(context, () => Quiz3Model());
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Quiz3'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -1329,8 +1330,33 @@ class _Quiz3WidgetState extends State<Quiz3Widget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FFButtonWidget(
-                          onPressed: () {
-                            print('Submit-Button pressed ...');
+                          onPressed: () async {
+                            safeSetState(() {});
+                            if (widget.ans1 == _model.radioButton31Value) {
+                              FFAppState().correctAns3 =
+                                  FFAppState().correctAns3 + 1;
+                              safeSetState(() {});
+                            }
+                            if (widget.ans2 == _model.radioButton32Value) {
+                              FFAppState().correctAns3 =
+                                  FFAppState().correctAns3 + 1;
+                              safeSetState(() {});
+                            }
+                            if (widget.ans3 == _model.radioButton33Value) {
+                              FFAppState().correctAns3 =
+                                  FFAppState().correctAns3 + 1;
+                              safeSetState(() {});
+                            }
+                            if (widget.ans4 == _model.radioButton34Value) {
+                              FFAppState().correctAns3 =
+                                  FFAppState().correctAns3 + 1;
+                              safeSetState(() {});
+                            }
+                            if (widget.ans5 == _model.radioButton35Value) {
+                              FFAppState().correctAns3 =
+                                  FFAppState().correctAns3 + 1;
+                              safeSetState(() {});
+                            }
                           },
                           text: 'Submit Quiz',
                           options: FFButtonOptions(

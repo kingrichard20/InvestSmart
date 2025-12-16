@@ -7,32 +7,32 @@ import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'auth_methods_model.dart';
-export 'auth_methods_model.dart';
+import 'authentication_model.dart';
+export 'authentication_model.dart';
 
-class AuthMethodsWidget extends StatefulWidget {
-  const AuthMethodsWidget({super.key});
+class AuthenticationWidget extends StatefulWidget {
+  const AuthenticationWidget({super.key});
 
-  static String routeName = 'auth_methods';
-  static String routePath = '/authMethods';
+  static String routeName = 'Authentication';
+  static String routePath = '/authentication';
 
   @override
-  State<AuthMethodsWidget> createState() => _AuthMethodsWidgetState();
+  State<AuthenticationWidget> createState() => _AuthenticationWidgetState();
 }
 
-class _AuthMethodsWidgetState extends State<AuthMethodsWidget>
+class _AuthenticationWidgetState extends State<AuthenticationWidget>
     with TickerProviderStateMixin {
-  late AuthMethodsModel _model;
+  late AuthenticationModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AuthMethodsModel());
+    _model = createModel(context, () => AuthenticationModel());
 
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'auth_methods'});
+        parameters: {'screen_name': 'Authentication'});
     _model.authTabBarController = TabController(
       vsync: this,
       length: 2,
@@ -53,6 +53,8 @@ class _AuthMethodsWidgetState extends State<AuthMethodsWidget>
 
     _model.loginPasswordTextController ??= TextEditingController();
     _model.loginPasswordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -71,7 +73,6 @@ class _AuthMethodsWidgetState extends State<AuthMethodsWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: Align(
           alignment: AlignmentDirectional(0.0, 0.0),
           child: Container(
@@ -1315,14 +1316,13 @@ class _AuthMethodsWidgetState extends State<AuthMethodsWidget>
                                       displayName: '',
                                     ));
 
-                                await LessonsRecord.createDoc(
-                                        currentUserReference!)
-                                    .set(createLessonsRecordData(
-                                  chapter1IsComplete: false,
-                                  chapter2IsComplete: false,
-                                  chapter3IsComplete: false,
-                                  chapter4IsComplete: false,
-                                  chapter5IsComplete: false,
+                                await currentUserReference!
+                                    .update(createUserAccountsRecordData(
+                                  chapter1IsCompleted: false,
+                                  chapter2IsCompleted: false,
+                                  chapter3IsCompleted: false,
+                                  chapter4IsCompleted: false,
+                                  chapter5IsCompleted: false,
                                 ));
 
                                 context.goNamedAuth(

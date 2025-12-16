@@ -6,28 +6,27 @@ import 'package:flutter/material.dart';
 class Quiz4Model extends FlutterFlowModel<Quiz4Widget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController;
-  List<String>? get choiceChipsValues => choiceChipsValueController?.value;
-  set choiceChipsValues(List<String>? val) =>
-      choiceChipsValueController?.value = val;
-  // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
+  // State field(s) for RadioButton_4_1 widget.
+  FormFieldController<String>? radioButton41ValueController;
+  // State field(s) for RadioButton_4_2 widget.
+  FormFieldController<String>? radioButton42ValueController;
+  // State field(s) for RadioButton_4_3 widget.
+  FormFieldController<String>? radioButton43ValueController;
+  // State field(s) for RadioButton_4_4 widget.
+  FormFieldController<String>? radioButton44ValueController;
+  // State field(s) for RadioButton_4_5 widget.
+  FormFieldController<String>? radioButton45ValueController;
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-  }
+  void dispose() {}
+
+  /// Additional helper methods.
+  String? get radioButton41Value => radioButton41ValueController?.value;
+  String? get radioButton42Value => radioButton42ValueController?.value;
+  String? get radioButton43Value => radioButton43ValueController?.value;
+  String? get radioButton44Value => radioButton44ValueController?.value;
+  String? get radioButton45Value => radioButton45ValueController?.value;
 }

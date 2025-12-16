@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'auth_methods_widget.dart' show AuthMethodsWidget;
+import 'authentication_widget.dart' show AuthenticationWidget;
 import 'package:flutter/material.dart';
 
-class AuthMethodsModel extends FlutterFlowModel<AuthMethodsWidget> {
+class AuthenticationModel extends FlutterFlowModel<AuthenticationWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey1 = GlobalKey<FormState>();

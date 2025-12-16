@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mycompany.investsmart</string>
+	<string>com.uricsc305.investsmart</string>
 	<key>PROJECT_ID</key>
 	<string>investsmart-aa9eb</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:714333315441:ios:be94622eee7d5eb31156d0</string>
+	<string>1:714333315441:ios:9d895bfe818267d71156d0</string>
 </dict>
 </plist>

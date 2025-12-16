@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -6,6 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class SellModel extends FlutterFlowModel<SellWidget> {
+  ///  Local state fields for this page.
+
+  String currentPrice = '0';
+
+  String totalReturn = '0';
+
+  String sharesSold = '';
+
+  String currentTicker = ' ';
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for ListView widget.
@@ -14,11 +25,17 @@ class SellModel extends FlutterFlowModel<SellWidget> {
   Query? listViewPagingQuery;
   List<StreamSubscription?> listViewStreamSubscriptions = [];
 
+  // Stores action output result for [Backend Call - Read Document] action in Asset-Tile widget.
+  HoldingsRecord? selectedAsset;
+  // Stores action output result for [Backend Call - API (Get Asset Price)] action in Asset-Tile widget.
+  ApiCallResponse? apiPriceResult;
   // State field(s) for Sell-Shares-TextField widget.
   FocusNode? sellSharesTextFieldFocusNode;
   TextEditingController? sellSharesTextFieldTextController;
   String? Function(BuildContext, String?)?
       sellSharesTextFieldTextControllerValidator;
+  // Stores action output result for [Backend Call - Read Document] action in Sell-Button widget.
+  HoldingsRecord? updatedHoldings;
 
   @override
   void initState(BuildContext context) {}

@@ -1,0 +1,5 @@
+{
+  "maxUsernameLength": 16,
+"tickerSearchDebounceMs": 2000,
+"apiURL": "https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo"
+}

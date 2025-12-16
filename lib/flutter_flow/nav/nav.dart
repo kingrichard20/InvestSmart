@@ -78,14 +78,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
           ? entryPage ?? LessonsWidget()
-          : AuthMethodsWidget(),
+          : AuthenticationWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
               ? entryPage ?? LessonsWidget()
-              : AuthMethodsWidget(),
+              : AuthenticationWidget(),
         ),
         FFRoute(
           name: Chapter1Widget.routeName,
@@ -93,24 +93,66 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => Chapter1Widget(),
         ),
         FFRoute(
-          name: ProfileWidget.routeName,
-          path: ProfileWidget.routePath,
-          builder: (context, params) => ProfileWidget(),
-        ),
-        FFRoute(
           name: Chapter4Widget.routeName,
           path: Chapter4Widget.routePath,
           builder: (context, params) => Chapter4Widget(),
         ),
         FFRoute(
-          name: Quiz1Widget.routeName,
-          path: Quiz1Widget.routePath,
-          builder: (context, params) => Quiz1Widget(),
+          name: AuthenticationWidget.routeName,
+          path: AuthenticationWidget.routePath,
+          builder: (context, params) => AuthenticationWidget(),
         ),
         FFRoute(
-          name: AuthMethodsWidget.routeName,
-          path: AuthMethodsWidget.routePath,
-          builder: (context, params) => AuthMethodsWidget(),
+          name: Quiz4Widget.routeName,
+          path: Quiz4Widget.routePath,
+          builder: (context, params) => Quiz4Widget(
+            ans1: params.getParam(
+              'ans1',
+              ParamType.String,
+            ),
+            ans2: params.getParam(
+              'ans2',
+              ParamType.String,
+            ),
+            ans3: params.getParam(
+              'ans3',
+              ParamType.String,
+            ),
+            ans4: params.getParam(
+              'ans4',
+              ParamType.String,
+            ),
+            ans5: params.getParam(
+              'ans5',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: Quiz3Widget.routeName,
+          path: Quiz3Widget.routePath,
+          builder: (context, params) => Quiz3Widget(
+            ans1: params.getParam(
+              'ans1',
+              ParamType.String,
+            ),
+            ans2: params.getParam(
+              'ans2',
+              ParamType.String,
+            ),
+            ans3: params.getParam(
+              'ans3',
+              ParamType.String,
+            ),
+            ans4: params.getParam(
+              'ans4',
+              ParamType.String,
+            ),
+            ans5: params.getParam(
+              'ans5',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: LessonsWidget.routeName,
@@ -121,11 +163,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: PortfolioWidget.routeName,
           path: PortfolioWidget.routePath,
           builder: (context, params) => PortfolioWidget(),
-        ),
-        FFRoute(
-          name: Quiz4Widget.routeName,
-          path: Quiz4Widget.routePath,
-          builder: (context, params) => Quiz4Widget(),
         ),
         FFRoute(
           name: BuyWidget.routeName,
@@ -163,14 +200,66 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => Chapter5Widget(),
         ),
         FFRoute(
-          name: Quiz2Widget.routeName,
-          path: Quiz2Widget.routePath,
-          builder: (context, params) => Quiz2Widget(),
+          name: ProfileWidget.routeName,
+          path: ProfileWidget.routePath,
+          builder: (context, params) => ProfileWidget(),
         ),
         FFRoute(
-          name: Quiz3Widget.routeName,
-          path: Quiz3Widget.routePath,
-          builder: (context, params) => Quiz3Widget(
+          name: Quiz5Widget.routeName,
+          path: Quiz5Widget.routePath,
+          builder: (context, params) => Quiz5Widget(
+            ans1: params.getParam(
+              'ans1',
+              ParamType.String,
+            ),
+            ans2: params.getParam(
+              'ans2',
+              ParamType.String,
+            ),
+            ans3: params.getParam(
+              'ans3',
+              ParamType.String,
+            ),
+            ans4: params.getParam(
+              'ans4',
+              ParamType.String,
+            ),
+            ans5: params.getParam(
+              'ans5',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: Quiz1Widget.routeName,
+          path: Quiz1Widget.routePath,
+          builder: (context, params) => Quiz1Widget(
+            ans1: params.getParam(
+              'ans1',
+              ParamType.String,
+            ),
+            ans2: params.getParam(
+              'ans2',
+              ParamType.String,
+            ),
+            ans3: params.getParam(
+              'ans3',
+              ParamType.String,
+            ),
+            ans4: params.getParam(
+              'ans4',
+              ParamType.String,
+            ),
+            ans5: params.getParam(
+              'ans5',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: Quiz2Widget.routeName,
+          path: Quiz2Widget.routePath,
+          builder: (context, params) => Quiz2Widget(
             ans1: params.getParam(
               'ans1',
               ParamType.String,
@@ -362,7 +451,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/authMethods';
+            return '/authentication';
           }
           return null;
         },
@@ -378,11 +467,11 @@ class FFRoute {
           final child = appStateNotifier.loading
               ? Center(
                   child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
+                    width: 35.0,
+                    height: 35.0,
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
+                        FlutterFlowTheme.of(context).brandAccent1,
                       ),
                     ),
                   ),

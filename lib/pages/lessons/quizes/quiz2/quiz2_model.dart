@@ -6,20 +6,16 @@ import 'package:flutter/material.dart';
 class Quiz2Model extends FlutterFlowModel<Quiz2Widget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for RadioButton widget.
-  FormFieldController<String>? radioButtonValueController1;
-  // State field(s) for RadioButton widget.
-  FormFieldController<String>? radioButtonValueController2;
-  // State field(s) for RadioButton widget.
-  FormFieldController<String>? radioButtonValueController3;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController;
-  List<String>? get choiceChipsValues => choiceChipsValueController?.value;
-  set choiceChipsValues(List<String>? val) =>
-      choiceChipsValueController?.value = val;
+  // State field(s) for RadioButton_2_1 widget.
+  FormFieldController<String>? radioButton21ValueController;
+  // State field(s) for RadioButton_2_2 widget.
+  FormFieldController<String>? radioButton22ValueController;
+  // State field(s) for RadioButton_2_3 widget.
+  FormFieldController<String>? radioButton23ValueController;
+  // State field(s) for RadioButton_2_4 widget.
+  FormFieldController<String>? radioButton24ValueController;
+  // State field(s) for RadioButton_2_5 widget.
+  FormFieldController<String>? radioButton25ValueController;
 
   @override
   void initState(BuildContext context) {}
@@ -28,7 +24,9 @@ class Quiz2Model extends FlutterFlowModel<Quiz2Widget> {
   void dispose() {}
 
   /// Additional helper methods.
-  String? get radioButtonValue1 => radioButtonValueController1?.value;
-  String? get radioButtonValue2 => radioButtonValueController2?.value;
-  String? get radioButtonValue3 => radioButtonValueController3?.value;
+  String? get radioButton21Value => radioButton21ValueController?.value;
+  String? get radioButton22Value => radioButton22ValueController?.value;
+  String? get radioButton23Value => radioButton23ValueController?.value;
+  String? get radioButton24Value => radioButton24ValueController?.value;
+  String? get radioButton25Value => radioButton25ValueController?.value;
 }

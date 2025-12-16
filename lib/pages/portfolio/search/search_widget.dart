@@ -1,11 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'search_model.dart';
 export 'search_model.dart';
@@ -33,6 +34,8 @@ class _SearchWidgetState extends State<SearchWidget> {
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Search'});
     _model.searchBarTextController ??= TextEditingController();
     _model.searchBarFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -55,9 +58,8 @@ class _SearchWidgetState extends State<SearchWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+            padding: EdgeInsets.all(24.0),
             child: Container(
-              width: MediaQuery.sizeOf(context).width * 0.95,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
                 boxShadow: [
@@ -124,7 +126,11 @@ class _SearchWidgetState extends State<SearchWidget> {
                       focusNode: _model.searchBarFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.searchBarTextController',
-                        Duration(milliseconds: 4000),
+                        Duration(
+                            milliseconds: FFDevEnvironmentValues()
+                                .tickerSearchDebounceMs
+                                .toDouble()
+                                .round()),
                         () async {
                           _model.searchResults = await SearchCall.call(
                             input: _model.searchBarTextController.text,
@@ -145,6 +151,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                         },
                       ),
                       autofocus: false,
+                      textCapitalization: TextCapitalization.characters,
                       textInputAction: TextInputAction.search,
                       obscureText: false,
                       decoration: InputDecoration(
@@ -219,97 +226,26 @@ class _SearchWidgetState extends State<SearchWidget> {
                                 .bodyMedium
                                 .fontStyle,
                           ),
+                      maxLength: 24,
+                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                      buildCounter: (context,
+                              {required currentLength,
+                              required isFocused,
+                              maxLength}) =>
+                          null,
                       validator: _model.searchBarTextControllerValidator
                           .asValidator(context),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 6.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: FlutterFlowChoiceChips(
-                              options: [
-                                ChipData('All'),
-                                ChipData('Stocks'),
-                                ChipData('Mutual Funds'),
-                                ChipData('ETFs')
-                              ],
-                              onChanged: (val) => safeSetState(() =>
-                                  _model.choiceChipsValue = val?.firstOrNull),
-                              selectedChipStyle: ChipStyle(
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).brandAccent1,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.inter(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context).info,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                iconColor: FlutterFlowTheme.of(context)
-                                    .brandTextStandard,
-                                iconSize: 16.0,
-                                elevation: 0.0,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              unselectedChipStyle: ChipStyle(
-                                backgroundColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.inter(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                iconColor: FlutterFlowTheme.of(context)
-                                    .brandTextStandard,
-                                iconSize: 16.0,
-                                elevation: 0.0,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              chipSpacing: 8.0,
-                              rowSpacing: 8.0,
-                              multiselect: false,
-                              alignment: WrapAlignment.start,
-                              controller: _model.choiceChipsValueController ??=
-                                  FormFieldController<List<String>>(
-                                [],
-                              ),
-                              wrapped: true,
-                            ),
-                          ),
-                        ].divide(SizedBox(width: 8.0)),
-                      ),
+                      inputFormatters: [
+                        if (!isAndroid && !isiOS)
+                          TextInputFormatter.withFunction((oldValue, newValue) {
+                            return TextEditingValue(
+                              selection: newValue.selection,
+                              text: newValue.text.toCapitalization(
+                                  TextCapitalization.characters),
+                            );
+                          }),
+                        FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))
+                      ],
                     ),
                     Expanded(
                       child: Container(
@@ -318,10 +254,10 @@ class _SearchWidgetState extends State<SearchWidget> {
                         ),
                         child: Builder(
                           builder: (context) {
-                            final searchResult = SearchCall.bestSearchMatches(
-                                  (_model.searchResults?.jsonBody ?? ''),
-                                )?.toList() ??
-                                [];
+                            final searchResult = functions
+                                .filterEquities(
+                                    _model.tickerSearchResults.toList())
+                                .toList();
 
                             return ListView.separated(
                               padding: EdgeInsets.zero,
@@ -333,55 +269,60 @@ class _SearchWidgetState extends State<SearchWidget> {
                               itemBuilder: (context, searchResultIndex) {
                                 final searchResultItem =
                                     searchResult[searchResultIndex];
-                                return Container(
-                                  width: double.infinity,
-                                  height: 72.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      BuyWidget.routeName,
+                                      queryParameters: {
+                                        'ticker': serializeParam(
+                                          getJsonField(
+                                            searchResultItem,
+                                            r'''$['1. symbol']''',
+                                          ).toString(),
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 72.0,
+                                    decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 0.5,
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 1.0,
+                                      ),
                                     ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 12.0, 12.0, 12.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                valueOrDefault<String>(
-                                                  SearchCall.ticker(
-                                                    (_model.searchResults
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  ),
-                                                  'NVDA',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          font:
-                                                              GoogleFonts.inter(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                          letterSpacing: 0.0,
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 12.0, 12.0, 12.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  getJsonField(
+                                                    searchResultItem,
+                                                    r'''$['1. symbol']''',
+                                                  ).toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        font: GoogleFonts.inter(
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           fontStyle:
@@ -390,17 +331,42 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                                   .bodyLarge
                                                                   .fontStyle,
                                                         ),
-                                              ),
-                                              Text(
-                                                valueOrDefault<String>(
-                                                  _model.name,
-                                                  'name',
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge
+                                                                .fontStyle,
+                                                      ),
                                                 ),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .labelSmall
-                                                    .override(
-                                                      font: GoogleFonts.inter(
+                                                Text(
+                                                  getJsonField(
+                                                    searchResultItem,
+                                                    r'''$['2. name']''',
+                                                  ).toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -412,27 +378,12 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                                 .labelSmall
                                                                 .fontStyle,
                                                       ),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelSmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelSmall
-                                                              .fontStyle,
-                                                    ),
-                                              ),
-                                            ].divide(SizedBox(height: 4.0)),
+                                                ),
+                                              ].divide(SizedBox(height: 4.0)),
+                                            ),
                                           ),
-                                        ),
-                                      ].divide(SizedBox(width: 12.0)),
+                                        ].divide(SizedBox(width: 12.0)),
+                                      ),
                                     ),
                                   ),
                                 );

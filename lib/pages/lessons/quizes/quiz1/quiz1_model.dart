@@ -6,32 +6,27 @@ import 'package:flutter/material.dart';
 class Quiz1Model extends FlutterFlowModel<Quiz1Widget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for RadioButton widget.
-  FormFieldController<String>? radioButtonValueController;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController;
-  List<String>? get choiceChipsValues => choiceChipsValueController?.value;
-  set choiceChipsValues(List<String>? val) =>
-      choiceChipsValueController?.value = val;
-  // State field(s) for RatingBar widget.
-  double? ratingBarValue;
+  // State field(s) for RadioButton_1_1 widget.
+  FormFieldController<String>? radioButton11ValueController;
+  // State field(s) for RadioButton_1_2 widget.
+  FormFieldController<String>? radioButton12ValueController;
+  // State field(s) for RadioButton_1_3 widget.
+  FormFieldController<String>? radioButton13ValueController;
+  // State field(s) for RadioButton_1_4 widget.
+  FormFieldController<String>? radioButton14ValueController;
+  // State field(s) for RadioButton_1_5 widget.
+  FormFieldController<String>? radioButton15ValueController;
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-  }
+  void dispose() {}
 
   /// Additional helper methods.
-  String? get radioButtonValue => radioButtonValueController?.value;
+  String? get radioButton11Value => radioButton11ValueController?.value;
+  String? get radioButton12Value => radioButton12ValueController?.value;
+  String? get radioButton13Value => radioButton13ValueController?.value;
+  String? get radioButton14Value => radioButton14ValueController?.value;
+  String? get radioButton15Value => radioButton15ValueController?.value;
 }
