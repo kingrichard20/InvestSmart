@@ -122,7 +122,7 @@ void main() async {
       const Duration(milliseconds: 20000),
     );
     // Searches the screen for the text "My Portfolio" which is the header/title for the portfolio page.
-    expect(find.text('My Portfolio'), findsWidgets);
+    expect(find.text('My Portfolio'), findsOneWidget);
   });
 
   testWidgets('Lesson Completion Tracking', (WidgetTester tester) async {
