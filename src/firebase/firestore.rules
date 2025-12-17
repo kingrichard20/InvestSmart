@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /user_Accounts/{document} {
+      allow create: if request.auth.uid == document;
+      allow read: if request.auth.uid == document;
+      allow write: if request.auth.uid == document;
+      allow delete: if false;
+    }
+
+    match /user_Accounts/{parent}/holdings/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if false;
+    }
+
+    match /user_Accounts/{parent}/transactions/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if false;
+    }
+
+    match /lesson_feedback/{document} {
+      allow create: if request.resource.data.user_id == /databases/$(database)/documents/user_Accounts/$(request.auth.uid);
+      allow read: if resource.data.user_id == /databases/$(database)/documents/user_Accounts/$(request.auth.uid);
+      allow write: if resource.data.user_id == /databases/$(database)/documents/user_Accounts/$(request.auth.uid);
+      allow delete: if false;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "714333315441",
+    "project_id": "investsmart-aa9eb",
+    "storage_bucket": "investsmart-aa9eb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714333315441:android:92257522927db71c1156d0",
+        "android_client_info": {
+          "package_name": "com.mycompany.investsmart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmadK6As6hpAMyFXttMlHBWpX9v53PUP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714333315441:android:87e2a7ceb6ccbd261156d0",
+        "android_client_info": {
+          "package_name": "com.uricsc305.investsmart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmadK6As6hpAMyFXttMlHBWpX9v53PUP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
