@@ -53,11 +53,11 @@ void main() async {
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 10000),
     );
-    await tester.enterText(find.byKey(const ValueKey('Login-Email_9xid')),
-        'nathanfeinberg@uri.edu');
+    await tester.enterText(
+        find.byKey(const ValueKey('Login-Email_9xid')), 'hudson_byers@uri.edu');
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.enterText(
-        find.byKey(const ValueKey('Login-Password_ofit')), 'coolpass1');
+        find.byKey(const ValueKey('Login-Password_ofit')), 'testtest123');
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.tap(find.byKey(const ValueKey('Login-Button_w2k2')));
     await tester.pumpAndSettle(
@@ -84,9 +84,14 @@ void main() async {
 
     // Waits for buy page to initially load with the data from the two api responses, called witht the passed page parameter.
     await tester.pumpAndSettle(
-      const Duration(milliseconds: 10000),
+      const Duration(milliseconds: 20000),
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 30000),
+    );
+    await tester.scrollUntilVisible(
+      find.byKey(const ValueKey('Shares-to-Buy_qlfm')),
+      100.0,
+      scrollable: find.byType(Scrollable),
     );
     // Enters the number of shares to buy.
     await tester.enterText(
@@ -94,9 +99,14 @@ void main() async {
     FocusManager.instance.primaryFocus?.unfocus();
     // Waits for the page to reload with calculated total cost.
     await tester.pumpAndSettle(
-      const Duration(milliseconds: 5000),
-      EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 10000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 20000),
+    );
+    await tester.scrollUntilVisible(
+      find.byKey(const ValueKey('Button_0ef5')),
+      100.0,
+      scrollable: find.byType(Scrollable),
     );
     // Taps the buy button to submit the buy order.
     await tester.tap(find.byKey(const ValueKey('Button_0ef5')));
@@ -124,7 +134,7 @@ void main() async {
 
     // Waits for lessons page to fully load.
     await tester.pumpAndSettle(
-      const Duration(milliseconds: 10000),
+      const Duration(milliseconds: 20000),
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 30000),
     );
@@ -160,7 +170,7 @@ void main() async {
 
     // Waits for page to fully load.
     await tester.pumpAndSettle(
-      const Duration(milliseconds: 10000),
+      const Duration(milliseconds: 20000),
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 30000),
     );
@@ -178,8 +188,6 @@ void main() async {
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 10000),
     );
-    // Tap on a rating for the feedback.
-    await tester.tap(find.byKey(const ValueKey('RatingBar_spih')));
     // Enter feedback text
     await tester.enterText(
         find.byKey(const ValueKey('Text_aere')), 'This app is terrible!!!!');

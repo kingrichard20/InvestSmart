@@ -1578,22 +1578,19 @@ class _Quiz5WidgetState extends State<Quiz5Widget> {
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 13.0, 0.0, 0.0),
-                              child: Container(
-                                key: ValueKey('RatingBar_spih'),
-                                child: RatingBar.builder(
-                                  onRatingUpdate: (newValue) => safeSetState(
-                                      () => _model.ratingBarValue = newValue),
-                                  itemBuilder: (context, index) => Icon(
-                                    Icons.star_rounded,
-                                    color: Color(0xFF44BB33),
-                                  ),
-                                  direction: Axis.horizontal,
-                                  initialRating: _model.ratingBarValue ??= 0.0,
-                                  unratedColor: Color(0xFF93C87E),
-                                  itemCount: 5,
-                                  itemSize: 30.0,
-                                  glowColor: Color(0xFF44BB33),
+                              child: RatingBar.builder(
+                                onRatingUpdate: (newValue) => safeSetState(
+                                    () => _model.ratingBarValue = newValue),
+                                itemBuilder: (context, index) => Icon(
+                                  Icons.star_rounded,
+                                  color: Color(0xFF44BB33),
                                 ),
+                                direction: Axis.horizontal,
+                                initialRating: _model.ratingBarValue ??= 0.0,
+                                unratedColor: Color(0xFF93C87E),
+                                itemCount: 5,
+                                itemSize: 30.0,
+                                glowColor: Color(0xFF44BB33),
                               ),
                             ),
                             Column(
