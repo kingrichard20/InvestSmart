@@ -1054,6 +1054,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget>
                                                   Container(
                                                     width: 350.0,
                                                     child: TextFormField(
+                                                      key: ValueKey(
+                                                          'Login-Password_ofit'),
                                                       controller: _model
                                                           .loginPasswordTextController,
                                                       focusNode: _model

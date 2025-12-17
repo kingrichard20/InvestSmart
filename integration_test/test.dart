@@ -36,18 +36,36 @@ void main() async {
 
     await tester.pumpWidget(ChangeNotifierProvider(
       create: (context) => FFAppState(),
-      child: const MyApp(),
+      child: MyApp(
+        entryPage: AuthenticationWidget(),
+      ),
     ));
     await GoogleFonts.pendingFonts();
 
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 10000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 30000),
+    );
     await tester.tap(find.byKey(const ValueKey('LoginTab_jbxv')));
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 5000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 10000),
+    );
     await tester.enterText(find.byKey(const ValueKey('Login-Email_9xid')),
         'nathanfeinberg@uri.edu');
+    FocusManager.instance.primaryFocus?.unfocus();
     await tester.enterText(
-        find.byKey(const ValueKey('Authentication_gfrw')), 'coolpass1');
+        find.byKey(const ValueKey('Login-Password_ofit')), 'coolpass1');
+    FocusManager.instance.primaryFocus?.unfocus();
     await tester.tap(find.byKey(const ValueKey('Login-Button_w2k2')));
-    await tester.pumpAndSettle();
-    expect(find.text('Profile'), findsOneWidget);
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 10000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 20000),
+    );
+    expect(find.text('Lessons'), findsOneWidget);
   });
 
   testWidgets('Successful Buy', (WidgetTester tester) async {
@@ -66,7 +84,7 @@ void main() async {
 
     // Waits for buy page to initially load with the data from the two api responses, called witht the passed page parameter.
     await tester.pumpAndSettle(
-      const Duration(milliseconds: 5000),
+      const Duration(milliseconds: 10000),
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 30000),
     );
@@ -76,14 +94,18 @@ void main() async {
     FocusManager.instance.primaryFocus?.unfocus();
     // Waits for the page to reload with calculated total cost.
     await tester.pumpAndSettle(
-      const Duration(milliseconds: 2000),
+      const Duration(milliseconds: 5000),
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 10000),
     );
     // Taps the buy button to submit the buy order.
     await tester.tap(find.byKey(const ValueKey('Button_0ef5')));
     // Wait for buy transaction to be created, the firebase database to be updated, and page switched back to portfolio.
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 10000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 20000),
+    );
     // Searches the screen for the text "My Portfolio" which is the header/title for the portfolio page.
     expect(find.text('My Portfolio'), findsWidgets);
   });
@@ -91,7 +113,7 @@ void main() async {
   testWidgets('Lesson Completion Tracking', (WidgetTester tester) async {
     _overrideOnError();
     await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: 'hudson_byers@uri.edu', password: 'testtest1234');
+        email: 'hudson_byers@uri.edu', password: 'testtest123');
     await tester.pumpWidget(ChangeNotifierProvider(
       create: (context) => FFAppState(),
       child: MyApp(
@@ -102,14 +124,18 @@ void main() async {
 
     // Waits for lessons page to fully load.
     await tester.pumpAndSettle(
-      const Duration(milliseconds: 3000),
+      const Duration(milliseconds: 10000),
       EnginePhase.sendSemanticsUpdate,
-      const Duration(milliseconds: 20000),
+      const Duration(milliseconds: 30000),
     );
     // Marks chapter 1 or lesson 1 as complete.
     await tester.tap(find.byKey(const ValueKey('Uncompleted-Icon_mx8e')));
     // Waits the chapters conditional visibility to update and the page to rebuild.
-    await tester.pumpAndSettle(const Duration(milliseconds: 3000));
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 5000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 10000),
+    );
     // Checks to see if only one chapter one contianer is on screen.
     expect(find.text('Chapter 1'), findsOneWidget);
   });
@@ -134,9 +160,9 @@ void main() async {
 
     // Waits for page to fully load.
     await tester.pumpAndSettle(
-      const Duration(milliseconds: 3000),
-      EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 10000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 30000),
     );
     // Scrolls until the submit button is on screen.
     await tester.scrollUntilVisible(
@@ -148,7 +174,7 @@ void main() async {
     await tester.tap(find.byKey(const ValueKey('Submit-Button_q5v6')));
     // Wait for feedback form to pop-up.
     await tester.pumpAndSettle(
-      const Duration(milliseconds: 2000),
+      const Duration(milliseconds: 5000),
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 10000),
     );
@@ -158,13 +184,18 @@ void main() async {
     await tester.enterText(
         find.byKey(const ValueKey('Text_aere')), 'This app is terrible!!!!');
     FocusManager.instance.primaryFocus?.unfocus();
-    // Taps on button to submit the rating and feedback
-    await tester.tap(find.byKey(const ValueKey('Submit-Button_q5v6')));
-    // Waits for feedback to be submited to firebase and the feedback pop-up along with the thank you message to dissapear.
     await tester.pumpAndSettle(
       const Duration(milliseconds: 5000),
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 10000),
+    );
+    // Taps on button to submit the rating and feedback
+    await tester.tap(find.byKey(const ValueKey('Submit-Button_q5v6')));
+    // Waits for feedback to be submited to firebase and the feedback pop-up along with the thank you message to dissapear.
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 10000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 20000),
     );
     // Tests to see if feedback input pop-up has disapeared.
     expect(find.text('Feedback'), findsNothing);
