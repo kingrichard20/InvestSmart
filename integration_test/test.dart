@@ -59,6 +59,11 @@ void main() async {
     await tester.enterText(
         find.byKey(const ValueKey('Login-Password_ofit')), 'coolpassword1');
     FocusManager.instance.primaryFocus?.unfocus();
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 5000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 10000),
+    );
     await tester.tap(find.byKey(const ValueKey('Login-Button_w2k2')));
     await tester.pumpAndSettle(
       const Duration(milliseconds: 10000),
@@ -84,7 +89,7 @@ void main() async {
 
     // Waits for buy page to initially load with the data from the two api responses, called witht the passed page parameter.
     await tester.pumpAndSettle(
-      const Duration(milliseconds: 20000),
+      const Duration(milliseconds: 10000),
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 30000),
     );
