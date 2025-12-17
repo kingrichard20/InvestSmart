@@ -767,6 +767,8 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                                                                       () {});
                                                                 },
                                                                 child: Icon(
+                                                                  key: ValueKey(
+                                                                      'Uncompleted-Icon_mx8e'),
                                                                   Icons
                                                                       .check_box_outline_blank_rounded,
                                                                   color: FlutterFlowTheme.of(

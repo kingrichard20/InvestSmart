@@ -49,6 +49,96 @@ void main() async {
     await tester.pumpAndSettle();
     expect(find.text('Profile'), findsOneWidget);
   });
+
+  testWidgets('Successful Buy', (WidgetTester tester) async {
+    _overrideOnError();
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: 'hudson_byers@uri.edu', password: 'testtest123');
+    await tester.pumpWidget(ChangeNotifierProvider(
+      create: (context) => FFAppState(),
+      child: MyApp(
+        entryPage: BuyWidget(
+          ticker: 'TSLA',
+        ),
+      ),
+    ));
+    await GoogleFonts.pendingFonts();
+
+    // Waits for buy page to initially load with the data from the two api responses, called witht the passed page parameter.
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 5000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 30000),
+    );
+    // Enters the number of shares to buy.
+    await tester.enterText(
+        find.byKey(const ValueKey('Shares-to-Buy_qlfm')), '10');
+    FocusManager.instance.primaryFocus?.unfocus();
+    // Waits for the page to reload with calculated total cost.
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 2000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 10000),
+    );
+    // Taps the buy button to submit the buy order.
+    await tester.tap(find.byKey(const ValueKey('Button_0ef5')));
+    // Wait for buy transaction to be created, the firebase database to be updated, and page switched back to portfolio.
+    await tester.pumpAndSettle();
+    // Searches the screen for the text "My Portfolio" which is the header/title for the portfolio page.
+    expect(find.text('My Portfolio'), findsWidgets);
+  });
+
+  testWidgets('Lesson Completion Tracking', (WidgetTester tester) async {
+    _overrideOnError();
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: 'hudson_byers@uri.edu', password: 'testtest1234');
+    await tester.pumpWidget(ChangeNotifierProvider(
+      create: (context) => FFAppState(),
+      child: MyApp(
+        entryPage: LessonsWidget(),
+      ),
+    ));
+    await GoogleFonts.pendingFonts();
+
+    // Waits for lessons page to fully load.
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 3000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 20000),
+    );
+    // Marks chapter 1 or lesson 1 as complete.
+    await tester.tap(find.byKey(const ValueKey('Uncompleted-Icon_mx8e')));
+    // Waits the chapters conditional visibility to update and the page to rebuild.
+    await tester.pumpAndSettle(const Duration(milliseconds: 3000));
+    // Checks to see if only one chapter one contianer is on screen.
+    expect(find.text('Chapter 1'), findsOneWidget);
+  });
+
+  testWidgets('User Gives Lesson Feedback', (WidgetTester tester) async {
+    _overrideOnError();
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: 'hudson_byers@uri.edu', password: 'testtest123');
+    await tester.pumpWidget(ChangeNotifierProvider(
+      create: (context) => FFAppState(),
+      child: MyApp(
+        entryPage: Quiz5Widget(
+          ans1: '1',
+          ans2: '2',
+          ans3: '1',
+          ans4: '2',
+          ans5: '2',
+        ),
+      ),
+    ));
+    await GoogleFonts.pendingFonts();
+
+    // Waits for page to fully load.
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 3000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 10000),
+    );
+  });
 }
 
 // There are certain types of errors that can happen during tests but

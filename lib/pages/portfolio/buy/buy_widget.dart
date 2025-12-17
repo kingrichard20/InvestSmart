@@ -3933,6 +3933,7 @@ class _BuyWidgetState extends State<BuyWidget> {
                                         ),
                                   ),
                                   TextFormField(
+                                    key: ValueKey('Shares-to-Buy_qlfm'),
                                     controller:
                                         _model.sharesToBuyTextController,
                                     focusNode: _model.sharesToBuyFocusNode,
@@ -4372,6 +4373,7 @@ class _BuyWidgetState extends State<BuyWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 16.0),
                                 child: FFButtonWidget(
+                                  key: ValueKey('Button_0ef5'),
                                   onPressed: () async {
                                     // When buy action is made, check if a number of sharees has been entered. Also check if the number is a posititve non-zero double with an accuracy up to the hundredths place.
                                     if ((_model.sharesToBuyTextController
