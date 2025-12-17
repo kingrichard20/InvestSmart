@@ -53,11 +53,11 @@ void main() async {
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 10000),
     );
-    await tester.enterText(
-        find.byKey(const ValueKey('Login-Email_9xid')), 'hudson_byers@uri.edu');
+    await tester.enterText(find.byKey(const ValueKey('Login-Email_9xid')),
+        'nathanfeinberg@uri.edu');
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.enterText(
-        find.byKey(const ValueKey('Login-Password_ofit')), 'testtest123');
+        find.byKey(const ValueKey('Login-Password_ofit')), 'coolpassword1');
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.tap(find.byKey(const ValueKey('Login-Button_w2k2')));
     await tester.pumpAndSettle(
