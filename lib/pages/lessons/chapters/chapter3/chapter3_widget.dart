@@ -480,6 +480,7 @@ class _Chapter3WidgetState extends State<Chapter3Widget> {
                             Padding(
                               padding: EdgeInsets.all(20.0),
                               child: Container(
+                                width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,

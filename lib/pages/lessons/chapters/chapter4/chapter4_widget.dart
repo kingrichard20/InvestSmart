@@ -251,18 +251,31 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                               size: 24.0,
                                             ),
                                           ),
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Dollar Cost Averaging (DCA)',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .brandStandardBold
-                                                    .override(
-                                                      font: GoogleFonts.inter(
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Dollar Cost Averaging (DCA)',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .brandStandardBold
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .brandStandardBold
+                                                              .fontStyle,
+                                                        ),
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .brandTextStandard,
+                                                        fontSize: 20.0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         fontStyle:
@@ -271,44 +284,14 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                 .brandStandardBold
                                                                 .fontStyle,
                                                       ),
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .brandTextStandard,
-                                                      fontSize: 20.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .brandStandardBold
-                                                              .fontStyle,
-                                                    ),
-                                              ),
-                                              Text(
-                                                'Invest the same amount regularly, regardless of price',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .brandStandard
-                                                        .override(
-                                                          font:
-                                                              GoogleFonts.inter(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .brandStandard
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .brandStandard
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .brandTextStandard,
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
+                                                ),
+                                                Text(
+                                                  'Invest the same amount regularly, regardless of price',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .brandStandard
+                                                      .override(
+                                                        font: GoogleFonts.inter(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -320,8 +303,25 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                   .brandStandard
                                                                   .fontStyle,
                                                         ),
-                                              ),
-                                            ],
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .brandTextStandard,
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .brandStandard
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .brandStandard
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ].divide(SizedBox(width: 12.0)),
                                       ),
@@ -425,41 +425,42 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                         .success,
                                                     size: 18.0,
                                                   ),
-                                                  Text(
-                                                    'You buy more shares when prices are low',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .brandStandard
-                                                        .override(
-                                                          font:
-                                                              GoogleFonts.inter(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
+                                                  Expanded(
+                                                    child: Text(
+                                                      'You buy more shares when prices are low',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .brandStandard
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .brandStandard
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .brandStandard
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .brandTextStandard,
+                                                                fontSize: 16.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
                                                                         context)
                                                                     .brandStandard
                                                                     .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
+                                                                fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .brandStandard
                                                                     .fontStyle,
-                                                          ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .brandTextStandard,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .brandStandard
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .brandStandard
-                                                                  .fontStyle,
-                                                        ),
+                                                              ),
+                                                    ),
                                                   ),
                                                 ].divide(SizedBox(width: 8.0)),
                                               ),
@@ -475,41 +476,42 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                         .success,
                                                     size: 18.0,
                                                   ),
-                                                  Text(
-                                                    'You buy fewer shares when prices are high',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .brandStandard
-                                                        .override(
-                                                          font:
-                                                              GoogleFonts.inter(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
+                                                  Expanded(
+                                                    child: Text(
+                                                      'You buy fewer shares when prices are high',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .brandStandard
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .brandStandard
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .brandStandard
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .brandTextStandard,
+                                                                fontSize: 16.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
                                                                         context)
                                                                     .brandStandard
                                                                     .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
+                                                                fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .brandStandard
                                                                     .fontStyle,
-                                                          ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .brandTextStandard,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .brandStandard
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .brandStandard
-                                                                  .fontStyle,
-                                                        ),
+                                                              ),
+                                                    ),
                                                   ),
                                                 ].divide(SizedBox(width: 8.0)),
                                               ),
@@ -525,41 +527,42 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                         .success,
                                                     size: 19.0,
                                                   ),
-                                                  Text(
-                                                    'Reduces emotional decision-making',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .brandStandard
-                                                        .override(
-                                                          font:
-                                                              GoogleFonts.inter(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
+                                                  Expanded(
+                                                    child: Text(
+                                                      'Reduces emotional decision-making',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .brandStandard
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .brandStandard
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .brandStandard
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .brandTextStandard,
+                                                                fontSize: 16.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
                                                                         context)
                                                                     .brandStandard
                                                                     .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
+                                                                fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .brandStandard
                                                                     .fontStyle,
-                                                          ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .brandTextStandard,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .brandStandard
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .brandStandard
-                                                                  .fontStyle,
-                                                        ),
+                                                              ),
+                                                    ),
                                                   ),
                                                 ].divide(SizedBox(width: 8.0)),
                                               ),
@@ -739,75 +742,65 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Icon(
-                                                      Icons
-                                                          .trending_down_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .error,
-                                                      size: 32.0,
-                                                    ),
-                                                    Text(
-                                                      'BUY',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelLarge
-                                                          .override(
-                                                            font: GoogleFonts
-                                                                .inter(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        Icons
+                                                            .trending_down_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        size: 32.0,
+                                                      ),
+                                                      Text(
+                                                        'BUY',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .inter(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelLarge
                                                                       .fontStyle,
-                                                            ),
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                    ),
-                                                    Text(
-                                                      'When prices are low',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmall
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .inter(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodySmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodySmall
-                                                                      .fontStyle,
                                                                 ),
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
+                                                      ),
+                                                      Text(
+                                                        'When prices are low',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodySmall
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .inter(
                                                                 fontWeight: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodySmall
@@ -817,8 +810,23 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                     .bodySmall
                                                                     .fontStyle,
                                                               ),
-                                                    ),
-                                                  ],
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .fontWeight,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .fontStyle,
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                                 Icon(
                                                   Icons.arrow_forward_rounded,
@@ -827,70 +835,62 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                       .brandTextStandard,
                                                   size: 35.0,
                                                 ),
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.trending_up_rounded,
-                                                      color: Color(0xFF4F9E30),
-                                                      size: 32.0,
-                                                    ),
-                                                    Text(
-                                                      'SELL',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelLarge
-                                                          .override(
-                                                            font: GoogleFonts
-                                                                .inter(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        Icons
+                                                            .trending_up_rounded,
+                                                        color:
+                                                            Color(0xFF4F9E30),
+                                                        size: 32.0,
+                                                      ),
+                                                      Text(
+                                                        'SELL',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .inter(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: Color(
+                                                                      0xFF4F9E30),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelLarge
                                                                       .fontStyle,
-                                                            ),
-                                                            color: Color(
-                                                                0xFF4F9E30),
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                    ),
-                                                    Text(
-                                                      'When prices are high',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmall
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .inter(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodySmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodySmall
-                                                                      .fontStyle,
                                                                 ),
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
+                                                      ),
+                                                      Text(
+                                                        'When prices are high',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodySmall
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .inter(
                                                                 fontWeight: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodySmall
@@ -900,8 +900,23 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                     .bodySmall
                                                                     .fontStyle,
                                                               ),
-                                                    ),
-                                                  ],
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .fontWeight,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .fontStyle,
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1169,28 +1184,15 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                     .fontStyle,
                                                           ),
                                                     ),
-                                                    Text(
-                                                      'Sell 25% when investment gains 50%',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .inter(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                                fontSize: 16.0,
-                                                                letterSpacing:
-                                                                    0.0,
+                                                    Expanded(
+                                                      child: Text(
+                                                        'Sell 25% when investment gains 50%',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .inter(
                                                                 fontWeight: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -1200,6 +1202,21 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                     .bodyMedium
                                                                     .fontStyle,
                                                               ),
+                                                              fontSize: 16.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
+                                                      ),
                                                     ),
                                                   ].divide(
                                                       SizedBox(width: 8.0)),
@@ -1241,28 +1258,15 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                     .fontStyle,
                                                           ),
                                                     ),
-                                                    Text(
-                                                      'Sell 50% when investment doubles (100% gain)',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .inter(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                                fontSize: 16.0,
-                                                                letterSpacing:
-                                                                    0.0,
+                                                    Expanded(
+                                                      child: Text(
+                                                        'Sell 50% when investment doubles (100% gain)',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .inter(
                                                                 fontWeight: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -1272,6 +1276,21 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                     .bodyMedium
                                                                     .fontStyle,
                                                               ),
+                                                              fontSize: 16.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
+                                                      ),
                                                     ),
                                                   ].divide(
                                                       SizedBox(width: 8.0)),
@@ -1313,28 +1332,15 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                     .fontStyle,
                                                           ),
                                                     ),
-                                                    Text(
-                                                      'Keep some for potential future growth',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .inter(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                                fontSize: 16.0,
-                                                                letterSpacing:
-                                                                    0.0,
+                                                    Expanded(
+                                                      child: Text(
+                                                        'Keep some for potential future growth',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .inter(
                                                                 fontWeight: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -1344,6 +1350,21 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                     .bodyMedium
                                                                     .fontStyle,
                                                               ),
+                                                              fontSize: 16.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
+                                                      ),
                                                     ),
                                                   ].divide(
                                                       SizedBox(width: 8.0)),
@@ -2326,18 +2347,31 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                               size: 24.0,
                                             ),
                                           ),
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Only Invest What You Can Afford to Lose',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .brandStandardBold
-                                                    .override(
-                                                      font: GoogleFonts.inter(
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Only Invest What You Can Afford to Lose',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .brandStandardBold
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .brandStandardBold
+                                                              .fontStyle,
+                                                        ),
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .brandTextStandard,
+                                                        fontSize: 20.0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         fontStyle:
@@ -2346,44 +2380,14 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                 .brandStandardBold
                                                                 .fontStyle,
                                                       ),
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .brandTextStandard,
-                                                      fontSize: 20.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .brandStandardBold
-                                                              .fontStyle,
-                                                    ),
-                                              ),
-                                              Text(
-                                                'The most important rule',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .brandStandard
-                                                        .override(
-                                                          font:
-                                                              GoogleFonts.inter(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .brandStandard
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .brandStandard
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .brandTextStandard,
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
+                                                ),
+                                                Text(
+                                                  'The most important rule',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .brandStandard
+                                                      .override(
+                                                        font: GoogleFonts.inter(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -2395,8 +2399,25 @@ class _Chapter4WidgetState extends State<Chapter4Widget> {
                                                                   .brandStandard
                                                                   .fontStyle,
                                                         ),
-                                              ),
-                                            ],
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .brandTextStandard,
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .brandStandard
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .brandStandard
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ].divide(SizedBox(width: 12.0)),
                                       ),

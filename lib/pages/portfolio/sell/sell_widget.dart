@@ -1049,6 +1049,7 @@ class _SellWidgetState extends State<SellWidget> {
                                                           .titleMedium
                                                           .fontStyle,
                                                 ),
+                                                fontSize: 16.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
@@ -1147,6 +1148,7 @@ class _SellWidgetState extends State<SellWidget> {
                                                             .brandTextFade;
                                                       }
                                                     }(),
+                                                    fontSize: 16.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
@@ -1223,6 +1225,7 @@ class _SellWidgetState extends State<SellWidget> {
                                                                   .titleMedium
                                                                   .fontStyle,
                                                         ),
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FlutterFlowTheme.of(

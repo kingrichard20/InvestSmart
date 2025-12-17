@@ -399,51 +399,66 @@ class _Chapter1WidgetState extends State<Chapter1Widget> {
                                   color: Color(0xFF1976D2),
                                   size: 30.0,
                                 ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 4.0),
-                                      child: Text(
-                                        'Pro Tip',
-                                        style: FlutterFlowTheme.of(context)
-                                            .brandStandardBold
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 4.0),
+                                        child: Text(
+                                          'Pro Tip',
+                                          style: FlutterFlowTheme.of(context)
+                                              .brandStandardBold
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .brandStandardBold
+                                                          .fontStyle,
+                                                ),
+                                                color: Color(0xFF1976D2),
+                                                fontSize: 20.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .brandStandardBold
                                                         .fontStyle,
                                               ),
-                                              color: Color(0xFF1976D2),
-                                              fontSize: 20.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandardBold
-                                                      .fontStyle,
-                                            ),
+                                        ),
                                       ),
-                                    ),
-                                    RichText(
-                                      textScaler:
-                                          MediaQuery.of(context).textScaler,
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'The S&P 500 is a stock market index that tracks the performance of the top 500 leading publicly traded companies in the United States.\nFrom 1926 to today, the averages yearly return is about 7% when accounting for inflation.',
-                                            style: TextStyle(),
-                                          )
-                                        ],
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.inter(
+                                      RichText(
+                                        textScaler:
+                                            MediaQuery.of(context).textScaler,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'The S&P 500 is a stock market index that tracks the performance of the top 500 leading publicly traded companies in the United States.\nFrom 1926 to today, the averages yearly return is about 7% when accounting for inflation.',
+                                              style: TextStyle(),
+                                            )
+                                          ],
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                                letterSpacing: 0.0,
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -453,19 +468,10 @@ class _Chapter1WidgetState extends State<Chapter1Widget> {
                                                         .bodyMedium
                                                         .fontStyle,
                                               ),
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ].divide(SizedBox(width: 12.0)),
                             ),

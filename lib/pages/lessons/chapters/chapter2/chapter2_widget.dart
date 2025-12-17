@@ -541,22 +541,33 @@ class _Chapter2WidgetState extends State<Chapter2Widget> {
                                         color: Color(0xFF1976D2),
                                         size: 30.0,
                                       ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 4.0),
-                                            child: Text(
-                                              'Pro Tip',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .brandStandardBold
-                                                  .override(
-                                                    font: GoogleFonts.inter(
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 4.0),
+                                              child: Text(
+                                                'Pro Tip',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .brandStandardBold
+                                                    .override(
+                                                      font: GoogleFonts.inter(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .brandStandardBold
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF1976D2),
+                                                      fontSize: 20.0,
+                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontStyle:
@@ -565,34 +576,41 @@ class _Chapter2WidgetState extends State<Chapter2Widget> {
                                                               .brandStandardBold
                                                               .fontStyle,
                                                     ),
-                                                    color: Color(0xFF1976D2),
-                                                    fontSize: 20.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .brandStandardBold
-                                                            .fontStyle,
-                                                  ),
+                                              ),
                                             ),
-                                          ),
-                                          RichText(
-                                            textScaler: MediaQuery.of(context)
-                                                .textScaler,
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text:
-                                                      'Don’t judge a stock only by its market cap.\nLarge companies tend to be more stable, while smaller ones can grow faster but carry more risk.\n\nMany investors hold a mix of large, mid, and small-cap stocks to stay balanced before exploring different stock styles like blue-chip, growth, and dividend stocks.',
-                                                  style: TextStyle(),
-                                                )
-                                              ],
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .brandStandard
-                                                      .override(
-                                                        font: GoogleFonts.inter(
+                                            RichText(
+                                              textScaler: MediaQuery.of(context)
+                                                  .textScaler,
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text:
+                                                        'Don’t judge a stock only by its market cap.\nLarge companies tend to be more stable, while smaller ones can grow faster but carry more risk.\n\nMany investors hold a mix of large, mid, and small-cap stocks to stay balanced before exploring different stock styles like blue-chip, growth, and dividend stocks.',
+                                                    style: TextStyle(),
+                                                  )
+                                                ],
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .brandStandard
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .brandStandard
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .brandStandard
+                                                                    .fontStyle,
+                                                          ),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .brandTextStandard,
+                                                          fontSize: 16.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -604,25 +622,10 @@ class _Chapter2WidgetState extends State<Chapter2Widget> {
                                                                   .brandStandard
                                                                   .fontStyle,
                                                         ),
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .brandTextStandard,
-                                                        fontSize: 16.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .brandStandard
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .brandStandard
-                                                                .fontStyle,
-                                                      ),
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ].divide(SizedBox(width: 12.0)),
                                   ),

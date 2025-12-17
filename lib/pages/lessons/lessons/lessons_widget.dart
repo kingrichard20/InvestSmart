@@ -2560,11 +2560,10 @@ class _LessonsWidgetState extends State<LessonsWidget> {
                   ),
                 ),
               ),
-              if (isWeb == true)
-                FlutterFlowAdBanner(
-                  showsTestAd: false,
-                  androidAdUnitID: 'ca-app-pub-8237284629970724/4227269593',
-                ),
+              FlutterFlowAdBanner(
+                showsTestAd: false,
+                androidAdUnitID: 'ca-app-pub-8237284629970724/4227269593',
+              ),
             ],
           ),
         ),

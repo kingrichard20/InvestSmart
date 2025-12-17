@@ -167,7 +167,9 @@ class _Chapter5WidgetState extends State<Chapter5Widget> {
                     children: [
                       Container(
                         width: double.infinity,
-                        height: 450.0,
+                        constraints: BoxConstraints(
+                          maxHeight: 450.0,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(0.0),
                         ),
@@ -175,9 +177,7 @@ class _Chapter5WidgetState extends State<Chapter5Widget> {
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
                             'assets/images/chapter5_banner.webp',
-                            width: 200.0,
-                            height: 200.0,
-                            fit: BoxFit.none,
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),

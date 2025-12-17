@@ -138,6 +138,36 @@ void main() async {
       EnginePhase.sendSemanticsUpdate,
       const Duration(milliseconds: 10000),
     );
+    // Scrolls until the submit button is on screen.
+    await tester.scrollUntilVisible(
+      find.byKey(const ValueKey('Submit-Button_q5v6')),
+      100.0,
+      scrollable: find.byType(Scrollable),
+    );
+    // Tap on the submit quiz button.
+    await tester.tap(find.byKey(const ValueKey('Submit-Button_q5v6')));
+    // Wait for feedback form to pop-up.
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 2000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 10000),
+    );
+    // Tap on a rating for the feedback.
+    await tester.tap(find.byKey(const ValueKey('RatingBar_spih')));
+    // Enter feedback text
+    await tester.enterText(
+        find.byKey(const ValueKey('Text_aere')), 'This app is terrible!!!!');
+    FocusManager.instance.primaryFocus?.unfocus();
+    // Taps on button to submit the rating and feedback
+    await tester.tap(find.byKey(const ValueKey('Submit-Button_q5v6')));
+    // Waits for feedback to be submited to firebase and the feedback pop-up along with the thank you message to dissapear.
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 5000),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(milliseconds: 10000),
+    );
+    // Tests to see if feedback input pop-up has disapeared.
+    expect(find.text('Feedback'), findsNothing);
   });
 }
 

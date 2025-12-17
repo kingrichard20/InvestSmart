@@ -1,4 +1,3 @@
-import '/components/quiz_feedback/quiz_feedback_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'quiz5_widget.dart' show Quiz5Widget;
@@ -17,17 +16,20 @@ class Quiz5Model extends FlutterFlowModel<Quiz5Widget> {
   FormFieldController<String>? radioButton54ValueController;
   // State field(s) for RadioButton_5_5 widget.
   FormFieldController<String>? radioButton55ValueController;
-  // Model for QuizFeedback component.
-  late QuizFeedbackModel quizFeedbackModel;
+  // State field(s) for RatingBar widget.
+  double? ratingBarValue;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
 
   @override
-  void initState(BuildContext context) {
-    quizFeedbackModel = createModel(context, () => QuizFeedbackModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    quizFeedbackModel.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
   }
 
   /// Additional helper methods.
